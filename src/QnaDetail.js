@@ -10,13 +10,13 @@ export default function QnaDetail() {
   
   useEffect(() => {
 
-    axios.get(`http://localhost:8080/api/qna/${id}`)
+    axios.get(`https://mallapi.cloudtype.app/api/qna/${id}`)
       .then(res => setQna(res.data));
 
   }, [id]);
 
    const deletePost = async () => {
-    await axios.delete(`http://localhost:8080/api/qna/${id}`);
+    await axios.delete(`https://mallapi.cloudtype.app/api/qna/${id}`);
     navigate("/qna");
   };
 

@@ -2,7 +2,10 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const host = "https://mallapi.cloudtype.app";
+
 export default function QnaWrite() {
+
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -12,6 +15,7 @@ export default function QnaWrite() {
   });
 
   const onChange = (e) => {
+
     setForm({
       ...form,
       [e.target.name]: e.target.value
@@ -19,54 +23,99 @@ export default function QnaWrite() {
   };
 
   const submit = async () => {
+
     try {
+
       console.log("SEND: ", form);
-      await axios.post("http://localhost:8080/api/qna", form);
+
+      await axios.post(
+        `${host}/api/qna`,
+        form
+      );
+
       alert("등록 완료");
+
       navigate("/qna");
+
     } catch (error) {
-      console.error("Error submitting form:", error);
+
+      console.error(
+        "Error submitting form:",
+        error
+      );
+
       alert("등록 실패");
-    } 
+    }
   };
 
   return (
-    <div style={{ padding: 120, maxWidth: 800, margin: "0 auto" }}>
+    <div
+      style={{
+        padding: 120,
+        maxWidth: 800,
+        margin: "0 auto"
+      }}
+    >
       <h2>QNA 글작성</h2>
 
-      {/* 제목 */}
       <div style={{ marginTop: 20 }}>
-        <label style={{ display: "block", marginBottom: 6 }}>
+        <label
+          style={{
+            display: "block",
+            marginBottom: 6
+          }}
+        >
           제목
         </label>
+
         <input
           name="title"
           onChange={onChange}
-          style={{ width: "100%", padding: 10 }}
+          style={{
+            width: "100%",
+            padding: 10
+          }}
         />
       </div>
 
-      {/* 작성자 */}
       <div style={{ marginTop: 20 }}>
-        <label style={{ display: "block", marginBottom: 6 }}>
+        <label
+          style={{
+            display: "block",
+            marginBottom: 6
+          }}
+        >
           작성자
         </label>
+
         <input
           name="writer"
           onChange={onChange}
-          style={{ width: "100%", padding: 10 }}
+          style={{
+            width: "100%",
+            padding: 10
+          }}
         />
       </div>
 
-      {/* 내용 */}
       <div style={{ marginTop: 20 }}>
-        <label style={{ display: "block", marginBottom: 6 }}>
+        <label
+          style={{
+            display: "block",
+            marginBottom: 6
+          }}
+        >
           내용
         </label>
+
         <textarea
           name="content"
           onChange={onChange}
-          style={{ width: "100%", height: 200, padding: 10 }}
+          style={{
+            width: "100%",
+            height: 200,
+            padding: 10
+          }}
         />
       </div>
 

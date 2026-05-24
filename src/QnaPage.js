@@ -14,7 +14,7 @@ export default function QnaPage() {
     try {
 
       const res = await axios.get(
-        "http://localhost:8080/api/qna"
+       "https://mallapi.cloudtype.app/api/qna"
       );
 
       setList(res.data);
