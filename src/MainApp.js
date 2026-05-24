@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getProducts } from "./api/productApi";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 
@@ -96,7 +97,7 @@ function Hero() {
       fontWeight: "500",
     }}
   >
-    블랜
+    블렌
   </span>
 </div>
 
@@ -284,6 +285,7 @@ function ProductList({ setModalImg }) {
 export default function MainApp() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalImg, setModalImg] = useState(null);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const handleScroll = () => {};
@@ -294,6 +296,14 @@ export default function MainApp() {
       window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // API 호출 useEffect 추가
+  useEffect(() => {
+
+    getProducts().then(data => {
+      setProducts(data || []);
+    });
+  }, []);
+  
   return (
     <>
       <Hero />
@@ -301,6 +311,18 @@ export default function MainApp() {
       <FlowLogo />
 
       <ProductList setModalImg={setModalImg} />
+
+       {/* 상품 목록 */}
+      <div className="product-list">
+
+        {products.map(product => (
+          <div key={product.pno}>
+            <h3>{product.pname}</h3>
+            <p>{product.price}원</p>
+          </div>
+        ))}
+
+      </div>
 
       {/* 이미지 모달 */}
       {modalImg && (
@@ -374,8 +396,6 @@ export default function MainApp() {
             자신만의 독특한 패션을 완성하는 브랜드입니다.
           </p>
         </div>
-          
-        
       </section>
     </>
   );

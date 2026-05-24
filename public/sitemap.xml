@@ -1,34 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
   <url>
-    <loc>https://parkhaemin.github.io/mall/</loc>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <loc>https://parkhaemin.github.io/</loc>
   </url>
-
   <url>
-    <loc>https://parkhaemin.github.io/mall/#/product/1</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://parkhaemin.github.io/mall</loc>
   </url>
-
-  <url>
-    <loc>https://parkhaemin.github.io/mall/#/product/2</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://parkhaemin.github.io/mall/#/product/3</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://parkhaemin.github.io/mall/#/product/4</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
 </urlset>

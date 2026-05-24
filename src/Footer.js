@@ -74,10 +74,18 @@ export default function Footer() {
               고객센터 : 채널톡 상담문의  MON-FRI 10:00 - 17:00 (주말 및 공휴일휴뮤) LUNCH 13:00 – 14:00
             </div>        
             <div style={{ display: "flex", gap: "20px", fontsize: "16px" , marginLeft: "20px", whiteSpace: "nowrap"}}>
-                      <FaTwitter />
-                      <FaInstagram />
-                      <FaFacebook />
-                      <FaTiktok />
+              <a href="https://instagram.com" target="_blank" rel="noreferrer">
+                <FaTwitter />
+              </a>
+              <a href="https://instagram.com/lucy1park" target="_blank" rel="noreferrer">
+                <FaInstagram />
+              </a>
+              <a href="https://facebook.com" target="_blank" rel="noreferrer">
+               <FaFacebook />
+              </a>
+              <a href="https://tiktok.com" target="_blank" rel="noreferrer">
+                <FaTiktok />
+              </a>    
             </div>
             </div>
             

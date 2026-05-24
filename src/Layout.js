@@ -17,8 +17,8 @@ export default function Layout() {
 
   return (
     <div className="wrap">
+      {/* Header는 반드시 return 안에서 렌더링 */}
       <Header isTop={isTop} />
-
       <main className="content">
         <Outlet />
       </main>

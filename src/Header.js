@@ -1,5 +1,5 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaBars,
   FaSearch,
@@ -8,141 +8,131 @@ import {
   FaShoppingBag,
 } from "react-icons/fa";
 
-export default function Header({ isTop }) {
+export default function Header() {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const menuItems = ["HOME", "SHOP", "LOOKBOOK", "ABOUT", "SERVICE"];
+  const menuItems = ["베스트", "신상품","상의", "하의", "상품문의Q/A", "FAQ"];
+
+  <ul className="menu">
+    {menuItems.map((item, idx) => (
+      <li key={idx}>
+        {item.split("").map((char, i) => (
+          <span key={i} className="char">
+            {char}
+          </span>
+        ))}
+      </li>
+    ))}
+  </ul>
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleNavigate = (item) => {
+    setMenuOpen(false);
+
+    if (item === "상품문의Q/A") navigate("/qna");
+    else if (item === "FAQ") navigate("/faq");
+    else navigate("/");
+  };
 
   return (
-    <header
-      style={{
-        position: "fixed",
-        top: 0,
-        width: "100%",
-        background: "#fff",
-        borderBottom: "1px solid #eee",
-        zIndex: 9999,
-      }}
-    >
+    <>
       {/* HEADER */}
-      <div
+      <header
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr auto 1fr",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "70px",
+          background: "#fff",
+          borderBottom: "1px solid #eee",
+          zIndex: 3000,
+
+          display: "flex",
           alignItems: "center",
-          padding: "12px 20px",
+          justifyContent: "space-between",
+          padding: "0 16px",
         }}
       >
-        {/* LEFT */}
-        <FaBars
-          style={{ fontSize: 20, cursor: "pointer" }}
-          onClick={() => setMenuOpen(true)}
-        />
-
-        {/* LOGO */}
-        <div
-          style={{
-            fontWeight: "bold",
-            letterSpacing: "6px",
-            textAlign: "center",
-          }}
-        >
-          BLEN
+        {/* LEFT: hamburger */}
+        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+         
+            <FaBars
+              onClick={() => setMenuOpen(true)}
+              style={{ fontSize: 22, cursor: "pointer" }}
+              
+            />
+          
         </div>
 
-        {/* RIGHT */}
+        {/* CENTER */}
         <div
           style={{
+            flex: 1,
             display: "flex",
-            justifyContent: "flex-end",
-            gap: "18px",
+            justifyContent: "center",
           }}
         >
+          {/* 🔥 스크롤 전: BLEN */}
+          {!scrolled && (
+            <div
+              style={{
+                fontSize: 18,
+                fontWeight: 700,
+                letterSpacing: 2,
+              }}
+            >
+              BLEN
+            </div>
+          )}
+
+          {/* 🔥 스크롤 후: menuItems 중앙 이동 */}
+          {scrolled && (
+            <div
+                style={{
+                display: "flex",
+                justifyContent: "center",
+                flexWrap: "wrap",   // ⭐ 핵심: 자동 줄바꿈
+                gap: "10px 20px",   // 세로 / 가로 간격
+                padding: "0px 20px",
+                maxWidth: "100%",
+              }}
+            >
+              {menuItems.map((item) => (
+                <div
+                  key={item}
+                  onClick={() => handleNavigate(item)}
+                  style={{ 
+                    cursor: "pointer", 
+                    fontSize: 14,
+                    whiteSpace: "nowrap"
+                  }}
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* RIGHT ICONS */}
+        <div style={{ display: "flex", gap: 16 }}>
           <FaSearch />
           <FaHeart />
           <FaUser />
           <FaShoppingBag />
         </div>
-      </div>
-
-      {/* SCROLL MENU */}
-      {!isTop && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "40px",
-            padding: "10px 0",
-            borderTop: "1px solid #eee",
-          }}
-        >
-          {menuItems.map((item) => (
-            <div
-              key={item}
-              style={{
-                fontSize: "14px",
-                letterSpacing: "2px",
-                cursor: "pointer",
-              }}
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* SIDE MENU */}
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: menuOpen ? 0 : "-260px",
-          width: "260px",
-          height: "100vh",
-          background: "#fff",
-          zIndex: 3000,
-          transition: "0.3s ease",
-          boxShadow: "2px 0 10px rgba(0,0,0,0.08)",
-          padding: "80px 30px",
-        }}
-      >
-        {/* CLOSE */}
-        <div
-          onClick={() => setMenuOpen(false)}
-          style={{
-            position: "absolute",
-            top: "20px",
-            right: "20px",
-            fontSize: "22px",
-            cursor: "pointer",
-          }}
-        >
-          ✕
-        </div>
-
-        {/* MENU LIST */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "28px",
-          }}
-        >
-          {menuItems.map((item) => (
-            <div
-              key={item}
-              onClick={() => setMenuOpen(false)}
-              style={{
-                fontSize: "15px",
-                letterSpacing: "2px",
-                cursor: "pointer",
-              }}
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
+      </header>
 
       {/* BACKDROP */}
       {menuOpen && (
@@ -151,12 +141,52 @@ export default function Header({ isTop }) {
           style={{
             position: "fixed",
             inset: 0,
-            background: "rgba(0,0,0,0.3)",
-            zIndex: 2000,
+            background: "rgba(0,0,0,0.35)",
+            zIndex: 2998,
           }}
         />
       )}
-    </header>
+
+      {/* SIDE MENU */}
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: 260,
+          height: "100vh",
+          background: "#fff",
+          zIndex: 2999,
+          transform: menuOpen ? "translateX(0)" : "translateX(-100%)",
+          transition: "0.3s ease",
+          padding: "80px 20px",
+        }}
+      >
+        <div
+          onClick={() => setMenuOpen(false)}
+          style={{
+            position: "absolute",
+            top: 20,
+            right: 20,
+            fontSize: 22,
+            cursor: "pointer",
+          }}
+        >
+          ✕
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          {menuItems.map((item) => (
+            <div
+              key={item}
+              onClick={() => handleNavigate(item)}
+              style={{ fontSize: 14, cursor: "pointer" }}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
-
