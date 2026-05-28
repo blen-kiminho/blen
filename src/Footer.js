@@ -48,7 +48,7 @@ export default function Footer() {
               fontWeight: "500"
             }}
           >
-            <span>2021</span>
+            <span>2023</span>
 
             <span
               style={{
@@ -65,8 +65,8 @@ export default function Footer() {
           {open && (
             <div style={{ lineHeight: "1.8", marginTop: "12px" }}>
               <p>
-                © jjAprl | 대표자 : 이루시 | 주소 : 서울특별시 강남구 선릉로 |
-                 연락처 : 010-2133-4176 | 사업자 등록 번호 : 165-11-156781
+                © 2023 KABLE | 대표자 : 박루시 | 주소 : 서울특별시 강남구 선릉로 |
+                 연락처 : 010-2133-417* | 사업자 등록 번호 : 165-11-15678*
               </p>
 
               <div
