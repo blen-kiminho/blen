@@ -96,7 +96,7 @@ function Hero() {
       fontWeight: "500",
     }}
   >
-    블랜
+    ACTIVE FASHION BRAND
   </span>
 </div>
 
