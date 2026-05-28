@@ -92,7 +92,7 @@ export default function Header() {
                 letterSpacing: 2,
               }}
             >
-              BLEN
+              KAble
             </div>
           )}
 

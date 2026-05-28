@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
 const products = [
-  { id: 1, name: "BLEN Black Front", price: 39000, img: process.env.PUBLIC_URL + "/blen-main1.jpg" },
-  { id: 2, name: "BLEN White Logo", price: 49000, img: process.env.PUBLIC_URL + "/blen-main2.jpg" },
-  { id: 3, name: "BLEN Back Mood", price: 42000, img: process.env.PUBLIC_URL + "/blen-main3.jpg" },
-  { id: 4, name: "BLEN Basic", price: 39000, img: process.env.PUBLIC_URL + "/blen-main4.jpg" }
+  { id: 1, name: "KABLE Man Sleeveless", price: 39000, img: process.env.PUBLIC_URL + "/kable1.jpg" },
+  { id: 2, name: "KABLE Woman Skirt", price: 49000, img: process.env.PUBLIC_URL + "/kable2.jpg" },
+  { id: 3, name: "KABLE Man Long Shirts", price: 42000, img: process.env.PUBLIC_URL + "/kable3.jpg" },
+  { id: 4, name: "KABLE Woman Top", price: 39000, img: process.env.PUBLIC_URL + "/kable4.jpg" }
 ];
 
 export default function ProductDetail() {

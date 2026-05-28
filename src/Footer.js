@@ -65,8 +65,8 @@ export default function Footer() {
         <div style={{ lineHeight: "1.8" }}>
          
             
-            <p>© jjAprl | 대표자 : 김민호 | 주소 : 서울특별시 금천구 가산동 스타밸리 10층 | 연락처 : 010-8686-7274 |
-                      사업자 등록 번호 : 511-19-09634</p>
+            <p>© jjAprl | 대표자 : 이루시 | 주소 : 서울특별시 양천구 목동서로 92번길 | 연락처 : 010-2133-4176 |
+                      사업자 등록 번호 : 165-11-156781</p>
             <div style={{
               marginTop: "10px", display: "flex", justifyContent: "space-between", alignItems: "center"
             }}>
@@ -77,7 +77,7 @@ export default function Footer() {
               <a href="https://instagram.com" target="_blank" rel="noreferrer">
                 <FaTwitter />
               </a>
-              <a href="https://instagram.com/lucy1park" target="_blank" rel="noreferrer">
+              <a href="https://instagram.com/" target="_blank" rel="noreferrer">
                 <FaInstagram />
               </a>
               <a href="https://facebook.com" target="_blank" rel="noreferrer">

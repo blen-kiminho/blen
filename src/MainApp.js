@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
-import { getProducts } from "./api/productApi";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 
 // 이미지
-const IMG_MAIN1 = process.env.PUBLIC_URL + "/blen-main1.jpg";
-const IMG_MAIN2 = process.env.PUBLIC_URL + "/blen-main2.jpg";
-const IMG_MAIN3 = process.env.PUBLIC_URL + "/blen-main3.jpg";
-const IMG_MAIN4 = process.env.PUBLIC_URL + "/blen-main4.jpg";
+const IMG_MAIN1 = process.env.PUBLIC_URL + "/kable1.jpg";
+const IMG_MAIN2 = process.env.PUBLIC_URL + "/kable2.jpg";
+const IMG_MAIN3 = process.env.PUBLIC_URL + "/kable3.jpg";
+const IMG_MAIN4 = process.env.PUBLIC_URL + "/kable4.jpg";
 
 // 상품
 const products = [
-  { id: 1, name: "BLEN Black Front", price: 39000, img: IMG_MAIN1 },
-  { id: 2, name: "BLEN White Logo", price: 49000, img: IMG_MAIN2 },
-  { id: 3, name: "BLEN Back Mood", price: 42000, img: IMG_MAIN3 },
-  { id: 4, name: "BLEN Basic", price: 39000, img: IMG_MAIN4 },
+  { id: 1, name: "KABLE Man sleveless", price: 39000, img: IMG_MAIN1 },
+  { id: 2, name: "KABLE Woman sleveless", price: 49000, img: IMG_MAIN2 },
+  { id: 3, name: "KABLE Man Long Sleeve", price: 42000, img: IMG_MAIN3 },
+  { id: 4, name: "KABLE Woman Top ", price: 39000, img: IMG_MAIN4 },
 ];
 
 
@@ -51,11 +50,11 @@ function Hero() {
           zIndex: 1,
         }}
       >
-        <span>BLEN</span>
-        <span>BLEN</span>
-        <span>BLEN</span>
-        <span>BLEN</span>
-        <span>BLEN</span>
+        <span>KABLE</span>
+        <span>KABLE</span>
+        <span>KABLE</span>
+        <span>KABLE</span>
+        <span>KABLE</span>
       </div>
 
       {/* 메인 */}
@@ -85,7 +84,7 @@ function Hero() {
       lineHeight: 1,
     }}
   >
-    BLEN
+    KABLE
   </h1>
 
   <span
@@ -97,14 +96,14 @@ function Hero() {
       fontWeight: "500",
     }}
   >
-    블렌
+    블랜
   </span>
 </div>
 
         {/* 로고 */}
         <img
-          src={process.env.PUBLIC_URL + "/blenlogo.jpeg"}
-          alt="BLEN LOGO"
+          src={process.env.PUBLIC_URL + "/kable_logo.jpg"}
+          alt="KABLE LOGO"
           style={{
             width: "190px",
             marginTop: "20px",
@@ -151,7 +150,7 @@ function Hero() {
             letterSpacing: "3px",
           }}
         >
-          MINIMAL FASHION BRAND
+         ACTIVE FASHION BRAND
         </p>
       </div>
     </section>
@@ -189,10 +188,10 @@ function FlowLogo() {
           pointerEvents: "none",
         }}
       >
-        <span>BLEN</span>
-        <span>BLEN</span>
-        <span>BLEN</span>
-        <span>BLEN</span>
+        <span>KABLE</span>
+        <span>KABLE</span>
+        <span>KABLE</span>
+        <span>KABLE</span>
       </div>
 
       <div
@@ -285,7 +284,6 @@ function ProductList({ setModalImg }) {
 export default function MainApp() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalImg, setModalImg] = useState(null);
-  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const handleScroll = () => {};
@@ -296,14 +294,6 @@ export default function MainApp() {
       window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // API 호출 useEffect 추가
-  useEffect(() => {
-
-    getProducts().then(data => {
-      setProducts(data || []);
-    });
-  }, []);
-  
   return (
     <>
       <Hero />
@@ -311,18 +301,6 @@ export default function MainApp() {
       <FlowLogo />
 
       <ProductList setModalImg={setModalImg} />
-
-       {/* 상품 목록 */}
-      <div className="product-list">
-
-        {products.map(product => (
-          <div key={product.pno}>
-            <h3>{product.pname}</h3>
-            <p>{product.price}원</p>
-          </div>
-        ))}
-
-      </div>
 
       {/* 이미지 모달 */}
       {modalImg && (
@@ -378,7 +356,7 @@ export default function MainApp() {
               fontWeight: "700",
             }}
           >
-            BLEN 브랜드 스토리
+            KABLE ACTIVE 브랜드 스토리
           </h2>
 
           <p
@@ -390,12 +368,16 @@ export default function MainApp() {
               fontStyle: "italic",
             }}
           >
-            BLEN은 'Blending'에서 유래된 감성 브랜드입니다.
-            물이 자연스럽게 번지듯 경계 없이 스며드는 흐름과 조화를 담아냅니다.
-            서로 다른 색이 섞이며 새로운 분위기를 만들어내듯, BLEN은 다양한 스타일과 감성을 자유롭게 믹스하여
-            자신만의 독특한 패션을 완성하는 브랜드입니다.
+            KABLE은 일상과 운동을 넘나드는 액티브 패션 브랜드입니다. 
+            편안한 착용감과 세련된 디자인을 동시에 추구하여, 운동할 때도 
+            스타일을 포기하지 않는 현대인들을 위한 제품을 선보입니다. 
+            우리의 컬렉션은 고품질 소재와 혁신적인 기술로 제작되어, 
+            활동적인 라이프스타일을 지원합니다. 
+            KABLE과 함께라면, 어디서든 자신감을 가지고 움직일 수 있습니다.
           </p>
         </div>
+          
+        
       </section>
     </>
   );

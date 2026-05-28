@@ -2,7 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const host = "https://mallapi.cloudtype.app";
+//const host = "https://mallapi.cloudtype.app";
+const host = "https://port-0-mallapi-mpjgq3i1d0c42053.sel3.cloudtype.app";
 
 export default function QnaWrite() {
 

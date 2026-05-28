@@ -11,7 +11,7 @@
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-icons": "^5.6.0",
-    "react-router-dom": "^7.15.0",
+    "react-router-dom": "^7.15.1",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -47,5 +47,5 @@
     "postcss": "^8.5.12",
     "tailwindcss": "^4.2.4"
   },
-  "homepage": "https://parkhaemin.github.io/mall"
+  "homepage": "https://parkhaemin.github.io"
 }
