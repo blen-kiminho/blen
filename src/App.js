@@ -8,6 +8,7 @@ import QnaPage from "./QnaPage";
 import QnaDetail from "./QnaDetail";
 import QnaWrite from "./QnaWrite";
 import ProductList from "./ProductList";
+import FAQPage from "./FAQPage";
 
 export default function App() {
   return (
@@ -34,7 +35,7 @@ export default function App() {
         <Route path="/login" element={<div>로그인</div>} />
         <Route path="/mypage" element={<div>마이페이지</div>} />
         <Route path="/service" element={<div>고객센터</div>} />
-        <Route path="/faq" element={<div>FAQ</div>} />
+        <Route path="/faq" element={<FAQPage />} />
       </Route>
     </Routes>
   );

@@ -12,17 +12,20 @@ export default function Layout() {
     };
 
     window.addEventListener("scroll", handleScroll);
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <div className="wrap">
-      {/* Header는 반드시 return 안에서 렌더링 */}
       <Header isTop={isTop} />
-      <main className="content"
-      style={{
-        paddingTop: "70px",
-      }}>
+
+      <main
+        className="content"
+        style={{
+          paddingTop: "70px",
+        }}
+      >
         <Outlet />
       </main>
 
@@ -30,3 +33,4 @@ export default function Layout() {
     </div>
   );
 }
+
