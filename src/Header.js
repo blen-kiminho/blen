@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -10,22 +11,18 @@ import {
 
 export default function Header() {
   const navigate = useNavigate();
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const menuItems = ["베스트", "신상품","상의", "하의", "상품문의Q/A", "FAQ"];
-
-  <ul className="menu">
-    {menuItems.map((item, idx) => (
-      <li key={idx}>
-        {item.split("").map((char, i) => (
-          <span key={i} className="char">
-            {char}
-          </span>
-        ))}
-      </li>
-    ))}
-  </ul>
+  const menuItems = [
+    "베스트",
+    "신상품",
+    "상의",
+    "하의",
+    "상품문의Q/A",
+    "FAQ",
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +30,7 @@ export default function Header() {
     };
 
     window.addEventListener("scroll", handleScroll);
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -64,15 +62,15 @@ export default function Header() {
           padding: "0 16px",
         }}
       >
-        {/* LEFT: hamburger */}
-        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-         
-            <FaBars
-              onClick={() => setMenuOpen(true)}
-              style={{ fontSize: 22, cursor: "pointer" }}
-              
-            />
-          
+        {/* LEFT */}
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <FaBars
+            onClick={() => setMenuOpen(true)}
+            style={{
+              fontSize: 22,
+              cursor: "pointer",
+            }}
+          />
         </div>
 
         {/* CENTER */}
@@ -83,39 +81,33 @@ export default function Header() {
             justifyContent: "center",
           }}
         >
-          {/* 🔥 스크롤 전: BLEN */}
-          {!scrolled && (
+          {!scrolled ? (
             <div
               style={{
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: 700,
                 letterSpacing: 2,
               }}
             >
               KAble
             </div>
-          )}
-
-          {/* 🔥 스크롤 후: menuItems 중앙 이동 */}
-          {scrolled && (
+          ) : (
             <div
-                style={{
+              style={{
                 display: "flex",
+                gap: 18,
+                flexWrap: "wrap",
                 justifyContent: "center",
-                flexWrap: "wrap",   // ⭐ 핵심: 자동 줄바꿈
-                gap: "10px 20px",   // 세로 / 가로 간격
-                padding: "0px 20px",
-                maxWidth: "100%",
               }}
             >
               {menuItems.map((item) => (
                 <div
                   key={item}
                   onClick={() => handleNavigate(item)}
-                  style={{ 
-                    cursor: "pointer", 
+                  style={{
+                    cursor: "pointer",
                     fontSize: 14,
-                    whiteSpace: "nowrap"
+                    whiteSpace: "nowrap",
                   }}
                 >
                   {item}
@@ -125,12 +117,18 @@ export default function Header() {
           )}
         </div>
 
-        {/* RIGHT ICONS */}
-        <div style={{ display: "flex", gap: 16 }}>
-          <FaSearch />
-          <FaHeart />
-          <FaUser />
-          <FaShoppingBag />
+        {/* RIGHT */}
+        <div
+          style={{
+            display: "flex",
+            gap: 14,
+            alignItems: "center",
+          }}
+        >
+          <FaSearch style={{ cursor: "pointer" }} />
+          <FaHeart style={{ cursor: "pointer" }} />
+          <FaUser style={{ cursor: "pointer" }} />
+          <FaShoppingBag style={{ cursor: "pointer" }} />
         </div>
       </header>
 
@@ -157,11 +155,14 @@ export default function Header() {
           height: "100vh",
           background: "#fff",
           zIndex: 2999,
-          transform: menuOpen ? "translateX(0)" : "translateX(-100%)",
+          transform: menuOpen
+            ? "translateX(0)"
+            : "translateX(-100%)",
           transition: "0.3s ease",
           padding: "80px 20px",
         }}
       >
+        {/* CLOSE */}
         <div
           onClick={() => setMenuOpen(false)}
           style={{
@@ -175,12 +176,22 @@ export default function Header() {
           ✕
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+        {/* MENU */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 20,
+          }}
+        >
           {menuItems.map((item) => (
             <div
               key={item}
               onClick={() => handleNavigate(item)}
-              style={{ fontSize: 14, cursor: "pointer" }}
+              style={{
+                fontSize: 15,
+                cursor: "pointer",
+              }}
             >
               {item}
             </div>
@@ -190,3 +201,4 @@ export default function Header() {
     </>
   );
 }
+

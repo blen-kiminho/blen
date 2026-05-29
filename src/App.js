@@ -13,7 +13,6 @@ export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<div>Home</div>} />
         {/* 메인 */}
         <Route index element={<MainApp />} />
 
