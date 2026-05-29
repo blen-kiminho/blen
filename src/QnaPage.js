@@ -5,153 +5,166 @@ import { Link, useNavigate } from "react-router-dom";
 export default function QnaPage() {
 
   const navigate = useNavigate();
-
   const [list, setList] = useState([]);
-
-  // 목록 조회
-  const loadData = async () => {
-
-    try {
-
-      const res = await axios.get(
-       "https://port-0-mallapi-mpjgq3i1d0c42053.sel3.cloudtype.app/api/qna"
-      );
-
-      setList(res.data);
-
-    } catch (err) {
-
-      console.log(err);
-    }
-  };
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const loadData = async () => {
+      try {
+        const res = await axios.get(
+          "https://port-0-mallapi-mpjgq3i1d0c42053.sel3.cloudtype.app/api/qna"
+        );
+
+        setList(res.data || []);
+
+      } catch (err) {
+        console.log(err);
+        setList([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
     loadData();
-
   }, []);
 
+  if (loading) {
+    return (
+      <div style={{
+        textAlign: "center",
+        padding: "120px",
+        color: "#888"
+      }}>
+        Loading...
+      </div>
+    );
+  }
+
   return (
-    <div
-      style={{
-        width: "100%",
-        maxWidth: "1200px",
-        margin: "0 auto",
-        padding: "40px 20px",
-      }}
-    >
+    <div style={{
+      maxWidth: "1100px",
+      margin: "0 auto",
+      padding: "70px 20px",
+      fontFamily: "Arial"
+    }}>
 
-      <h1
-        style={{
-          fontSize: "32px",
-          marginBottom: "50px"
-        }}
-      >
-        Q&A
-      </h1>
+      {/* HEADER */}
+      <div style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: "30px"
+      }}>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          marginBottom: "20px"
-        }}
-      >
+        <h1 style={{
+          fontSize: "28px",
+          fontWeight: "700",
+          color: "#111"
+        }}>
+          Q&A
+        </h1>
 
+        {/* 글쓰기 버튼 */}
         <button
           onClick={() => navigate("/qna/write")}
           style={{
-            width: "120px",
-            height: "45px",
+            padding: "12px 20px",
+            borderRadius: "12px",
             border: "none",
-            backgroundColor: "black",
-            color: "white",
-            cursor: "pointer"
+            background: "linear-gradient(135deg,#111,#333)",
+            color: "#fff",
+            fontSize: "14px",
+            fontWeight: "600",
+            cursor: "pointer",
+            boxShadow: "0 6px 15px rgba(0,0,0,0.2)",
+            transition: "0.2s"
+          }}
+          onMouseOver={(e) => {
+            e.target.style.transform = "scale(1.05)";
+            e.target.style.opacity = "0.9";
+          }}
+          onMouseOut={(e) => {
+            e.target.style.transform = "scale(1)"
+            e.target.style.opacity = "1"
           }}
         >
-          글쓰기
+          ✏ 글쓰기
         </button>
 
       </div>
 
-      <table
-        style={{
-          width: "100%",
-          borderCollapse: "collapse"
-        }}
-      >
+      {/* TABLE */}
+      <table style={{
+        width: "100%",
+        borderCollapse: "collapse"
+      }}>
 
         <thead>
-
-          <tr
-            style={{
-              borderTop: "2px solid black",
-              borderBottom: "1px solid #ddd",
-              height: "60px"
-            }}
-          >
-
-            <th width="10%">번호</th>
-
-            <th width="55%">제목</th>
-
-            <th width="15%">작성자</th>
-
-            <th width="20%">작성일</th>
-
+          <tr style={{
+            borderTop: "2px solid #000",
+            borderBottom: "1px solid #ddd",
+            height: "55px",
+            fontSize: "14px"
+          }}>
+            <th style={{ width: "10%" }}>번호</th>
+            <th style={{ width: "55%", textAlign: "left" }}>제목</th>
+            <th style={{ width: "15%" }}>작성자</th>
+            <th style={{ width: "20%" }}>작성일</th>
           </tr>
-
         </thead>
 
         <tbody>
-
-          {
+          {list.length === 0 ? (
+            <tr>
+              <td colSpan="4" style={{
+                textAlign: "center",
+                padding: "50px",
+                color: "#999"
+              }}>
+                등록된 글이 없습니다
+              </td>
+            </tr>
+          ) : (
             list.map((item) => (
-
               <tr
                 key={item.id}
                 style={{
                   borderBottom: "1px solid #eee",
                   height: "60px",
-                  textAlign: "center"
+                  cursor: "pointer"
                 }}
+                onMouseOver={(e) => e.currentTarget.style.background = "#fafafa"}
+                onMouseOut={(e) => e.currentTarget.style.background = "#fff"}
               >
 
-                <td>{item.id}</td>
+                <td style={{ textAlign: "center", color: "#888" }}>
+                  {item.id}
+                </td>
 
-                <td
-                  style={{
-                    textAlign: "left",
-                    paddingLeft: "20px"
-                  }}
-                >
-
+                <td style={{ paddingLeft: "15px" }}>
                   <Link
                     to={`/qna/${item.id}`}
                     style={{
                       textDecoration: "none",
-                      color: "black"
+                      color: "#111",
+                      fontWeight: "500"
                     }}
                   >
                     {item.title}
                   </Link>
-
                 </td>
 
-                <td>{item.writer}</td>
+                <td style={{ textAlign: "center", color: "#666" }}>
+                  {item.writer}
+                </td>
 
-                <td>
-                  {
-                    item.createdAt
-                    ? item.createdAt.substring(0, 10)
-                    : ""
-                  }
+                <td style={{ textAlign: "center", color: "#999", fontSize: "13px" }}>
+                  {item.createdAt ? item.createdAt.substring(0, 10) : ""}
                 </td>
 
               </tr>
             ))
-          }
-
+          )}
         </tbody>
 
       </table>
