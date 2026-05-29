@@ -14,7 +14,7 @@ export default function QnaPage() {
     try {
 
       const res = await axios.get(
-       "https://port-0-mallapi-mpjgq3i1d0c42053.sel3.cloudtype.app/api/qna"
+       "https://port-0-mallapi-mpjgq3i1d0c42053.sel3.cloudtype.app/api/qna/list"
       );
 
       setList(res.data);
