@@ -37,7 +37,7 @@ export default function QnaDetail() {
         {qna.content}
       </div>
 
- <div style={{ marginTop: "30px", display: "flex", gap: "10px" }}>
+      <div style={{ marginTop: "30px", display: "flex", gap: "10px" }}>
 
         <button onClick={() => navigate(`/qna/edit/${id}`)}>
           수정
@@ -47,17 +47,7 @@ export default function QnaDetail() {
           삭제
         </button>
 
-      </div> <div style={{ marginTop: "30px", display: "flex", gap: "10px" }}>
-
-        <button onClick={() => navigate(`/qna/edit/${id}`)}>
-          수정
-        </button>
-
-        <button onClick={deletePost}>
-          삭제
-        </button>
-
-      </div>
+      </div> 
     </div>
   );
 }
