@@ -34,13 +34,50 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavigate = (item) => {
-    setMenuOpen(false);
+  // 메뉴 클릭 처리
+const handleMenuClick = (item) => {
+  setMenuOpen(false);
 
-    if (item === "상품문의Q/A") navigate("/qna");
-    else if (item === "FAQ") navigate("/faq");
-    else navigate("/");
+  // 섹션 ID 매핑
+  const sectionMap = {
+    베스트: "best",
+    신상품: "new",
+    상의: "top",
+    하의: "bottom",
   };
+
+  // 스크롤 섹션 메뉴
+  if (sectionMap[item]) {
+    navigate("/");
+
+    setTimeout(() => {
+      const section = document.getElementById(sectionMap[item]);
+
+      if (section) {
+        section.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 100);
+
+    return;
+  }
+
+  // QNA
+  if (item === "상품문의Q/A") {
+    navigate("/qna");
+    return;
+  }
+
+  // FAQ
+  if (item === "FAQ") {
+    navigate("/faq");
+    return;
+  }
+
+  navigate("/");
+};
 
   return (
     <>
@@ -103,11 +140,14 @@ export default function Header() {
               {menuItems.map((item) => (
                 <div
                   key={item}
-                  onClick={() => handleNavigate(item)}
+                  onClick={() => handleMenuClick(item)}
                   style={{
                     cursor: "pointer",
                     fontSize: 14,
                     whiteSpace: "nowrap",
+                    display: "flex",
+                    alignItems: "center",
+                    height: "20px",
                   }}
                 >
                   {item}
@@ -187,7 +227,7 @@ export default function Header() {
           {menuItems.map((item) => (
             <div
               key={item}
-              onClick={() => handleNavigate(item)}
+              onClick={() => handleMenuClick(item)}
               style={{
                 fontSize: 15,
                 cursor: "pointer",
@@ -201,4 +241,3 @@ export default function Header() {
     </>
   );
 }
-

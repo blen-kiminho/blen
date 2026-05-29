@@ -226,13 +226,14 @@ function ProductList({ setModalImg }) {
   const navigate = useNavigate();
 
   return (
-    <section
-      style={{
-        maxWidth: "1200px",
-        margin: "80px auto",
-        padding: "0 20px",
-      }}
-    >
+  <section
+    id="best"
+    tabIndex={-1}
+    style={{
+    padding: "80px 20px",
+    textAlign: "center"
+    }}
+  >
       <h2 style={{ fontSize: "24px", marginBottom: "30px" }}>
         BEST SELLER
       </h2>

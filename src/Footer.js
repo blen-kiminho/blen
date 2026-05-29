@@ -63,8 +63,17 @@ export default function Footer() {
 
           {/* 내용 */}
           {open && (
-            <div style={{ lineHeight: "1.8", marginTop: "12px" }}>
-              <p>
+            <div style={{ lmarginTop: "10px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  gap: "20px",
+                  flexWrap: "wrap"}}>
+              <p
+                style={{
+                  margin: 0,
+                  lineHeight: "1.6",
+                }}>
                 © 2023 KABLE | 대표자 : 박루시 | 주소 : 서울특별시 강남구 선릉로 |
                  연락처 : 010-2133-417* | 사업자 등록 번호 : 165-11-15678*
               </p>
@@ -79,11 +88,16 @@ export default function Footer() {
                   flexWrap: "wrap"
                 }}
               >
+                <p
+                style={{
+                  margin: 0,
+                  lineHeight: "1.6",
+                }}>
                 <div>
                   고객센터 : 채널톡 상담문의 MON-FRI 10:00 - 17:00
                   (주말 및 공휴일 휴무) LUNCH 13:00 – 14:00
                 </div>
-
+                </p>  
                 {/* SNS */}
                 <div
                   style={{
