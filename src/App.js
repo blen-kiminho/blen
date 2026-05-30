@@ -14,19 +14,15 @@ export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        {/* 메인 */}
         <Route index element={<MainApp />} />
 
-        {/* 상품 */}
         <Route path="/product" element={<ProductList />} />
         <Route path="/product/:id" element={<ProductDetail />} />
 
-        {/* QNA */}
         <Route path="/qna" element={<QnaPage />} />
         <Route path="/qna/:id" element={<QnaDetail />} />
         <Route path="/qna/write" element={<QnaWrite />} />
 
-        {/* 메뉴 */}
         <Route path="/search" element={<div>상품찾기</div>} />
         <Route path="/best" element={<div>베스트</div>} />
         <Route path="/lookbook" element={<div>룩북</div>} />
@@ -40,4 +36,3 @@ export default function App() {
     </Routes>
   );
 }
- 
