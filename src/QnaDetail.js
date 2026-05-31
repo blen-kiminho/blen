@@ -51,8 +51,9 @@ export default function QnaDetail() {
       setText("");
       loadReplies(); // ⭐ 즉시 갱신
     } catch (err) {
-      console.log("status =", err.response?.status);
-      console.log("data =", err.response?.data);
+      console.log(err.toJSON?.());
+      console.log(err.message);
+      console.log(err.code);
       console.log(err);
       alert("댓글 등록 실패");
     }
