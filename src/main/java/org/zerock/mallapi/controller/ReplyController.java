@@ -23,10 +23,6 @@ public class ReplyController {
 
     private final ReplyService replyService;
 
-    @GetMapping("/")
-    public String reply() {
-        return "OK";
-    }
 
     @GetMapping("/{qnaId}")
     public List<Reply> list(@PathVariable Long qnaId) {

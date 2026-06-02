@@ -33,11 +33,6 @@ public class QnaController {
     private final QnaService qnaService;
     private final QnaRepository qnaRepository;
     
-    @GetMapping("/")
-    public String qna() {
-        return "OK";
-    }
-
     @PutMapping("/reply/{qno}")
     public ResponseEntity<?> reply(
             @PathVariable Long qno,
