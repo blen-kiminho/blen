@@ -1,5 +1,6 @@
 package org.zerock.mallapi.config;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.context.annotation.Bean;
@@ -13,39 +14,22 @@ public class CorsConfig {
 
      @Bean
     public CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration config = new CorsConfiguration();
 
-        CorsConfiguration config = new CorsConfiguration();
+   config.setAllowedOriginPatterns(Arrays.asList(
+    "https://parkhaemin.github.io",
+    "http://localhost:3000"
+   ));
 
-        // 🔥 프론트 허용
-        config.setAllowedOriginPatterns(List.of(
-                "http://localhost:3000",
-                "http://127.0.0.1:3000",
-                "https://*.github.io",
-                "https://*.vercel.app",
-                "https://*.netlify.app",
-                "https://*.cloudtype.app"
-        ));
+    config.addAllowedMethod("*");
+    config.addAllowedHeader("*");
+    config.setAllowCredentials(true);
 
-        // 🔥 HTTP 메서드
-        config.setAllowedMethods(List.of(
-                "GET", "POST", "PUT", "DELETE", "OPTIONS"
-        ));
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", config);
 
-        config.setAllowedHeaders(List.of("*"));
-
-        // 🔥 처음엔 무조건 false (안 깨지는 핵심)
-        config.setAllowCredentials(false);
-
-        config.setExposedHeaders(List.of("Authorization"));
-
-        UrlBasedCorsConfigurationSource source =
-                new UrlBasedCorsConfigurationSource();
-
-        source.registerCorsConfiguration("/**", config);
-
-        return source;
-        
-    }
+    return source;
+}
     
    
     
