@@ -46,7 +46,7 @@ public class QnaController {
         return ResponseEntity.ok().build();
     }
     // 전체조회
-    @GetMapping("/list")
+    @GetMapping("")
     public List<Qna> list() {
 
         return qnaService.list();
