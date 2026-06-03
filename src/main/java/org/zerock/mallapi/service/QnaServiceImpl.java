@@ -11,9 +11,18 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class QnaServiceImpl implements QnaService {
 
     private final QnaRepository qnaRepository;
+
+     @Override
+    public void reply(Long qno, String reply) {
+        Qna qna = qnaRepository.findById(qno)
+                .orElseThrow(() -> new IllegalArgumentException("Q&A를 찾을 수 없습니다."));
+        qna.setReply(reply);
+        // @Transactional이 붙어있어 별도 save() 호출 없이도 DB에 자동 반영됩니다.
+    }
 
     @Override
     public List<Qna> list() {
@@ -54,15 +63,4 @@ public class QnaServiceImpl implements QnaService {
         qnaRepository.deleteById(id);
     }
 
-    @Override
-    @Transactional
-    public void reply(Long qno, String reply) {
-
-    Qna qna = qnaRepository.findById(qno)
-            .orElseThrow(() -> new RuntimeException("QnA not found"));
-
-    qna.setReply(reply);
-
-    qnaRepository.save(qna);
-}
 }

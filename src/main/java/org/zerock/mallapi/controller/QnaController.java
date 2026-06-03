@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.zerock.mallapi.entity.Qna;
 import org.zerock.mallapi.repository.QnaRepository;
 import org.zerock.mallapi.service.QnaService;
-
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -31,18 +30,11 @@ import lombok.RequiredArgsConstructor;
 public class QnaController {
 
     private final QnaService qnaService;
-    private final QnaRepository qnaRepository;
-    
+   
     @PutMapping("/reply/{qno}")
-    public ResponseEntity<?> reply(
-            @PathVariable Long qno,
-            @RequestBody Map<String, String> map
-            ) {
-
+    public ResponseEntity<?> reply(@PathVariable Long qno, @RequestBody Map<String, String> map) {
         String reply = map.get("reply");
-
-        qnaService.reply(qno, reply);
-
+        qnaService.reply(qno, reply); // 서비스의 메서드를 호출합니다.
         return ResponseEntity.ok().build();
     }
     // 전체조회
@@ -83,11 +75,4 @@ public class QnaController {
         qnaService.delete(id);
     }
 
-    @Transactional
-    public void reply(Long qno, String reply) {
-
-    Qna qna = qnaRepository.findById(qno).orElseThrow();
-
-    qna.setReply(reply);
-}
 }
