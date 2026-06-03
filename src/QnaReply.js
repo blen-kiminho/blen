@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 //const host = "http://localhost:8080";
 const host =
-  "https://port-0-mallapi-mpjgq3i1d0c42053.sel3.cloudtype.app";
+  "https://port-0-activecable-mpttw6di3d47490d.sel3.cloudtype.app/";
 
 export default function QnaDetail() {
   const { qno } = useParams();
@@ -35,9 +35,15 @@ export default function QnaDetail() {
   }, []);
 
   // 답변등록
-  const handleReply = async () => {
+  const handleReply = async (e) => {
+    console.log("답변 등록 시도:", { qno, reply });
+
+    if (e) e.preventDefault();
+
     try {
-      await axios.put(`${host}/api/qna/reply/${qno}`, {
+      console.log("요청 출발 직전 데이터 확인:", reply);
+
+      await axios.post(`${host}/api/qna/reply/${qno}`, {
         reply: reply,
       });
 
@@ -125,7 +131,7 @@ export default function QnaDetail() {
               }}
             />
 
-            <button
+            <button type="button"
               onClick={handleReply}
               style={{
                 marginTop: "10px",
@@ -140,4 +146,15 @@ export default function QnaDetail() {
       </div>
     </div>
   );
+
+  <button 
+  type="button" 
+  onClick={() => {
+    console.log("🔥 테스트: 조건문 밖에서 버튼 클릭됨!");
+    handleReply();
+  }}
+  style={{ padding: "15px", backgroundColor: "red", color: "white" }}
+>
+  [테스트] 무조건 실행되는 답변등록 버튼
+</button>
 }

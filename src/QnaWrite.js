@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const host = "https://port-0-mallapi-mpjgq3i1d0c42053.sel3.cloudtype.app";
+const host = "https://port-0-activecable-mpttw6di3d47490d.sel3.cloudtype.app/api/qna/reply"; // API 엔드포인트 URL
 
 export default function QnaWrite() {
 

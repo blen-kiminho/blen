@@ -1,0 +1,21 @@
+# Query: cloudtype.app
+
+6개 결과 - 6 파일
+
+package.json:
+  5:   "proxy": "https://locak",
+
+src\api.js:
+  4:   baseURL: "https://port-0-mallapi-mpjgq3i1d0c42053.sel3.cloudtype.app",
+
+src\QnaDetail.js:
+  6:   "https://port-0-mallapi-mpjgq3i1d0c42053.sel3.cloudtype.app";
+
+src\QnaPage.js:
+  15:           "https://port-0-mallapi-mpjgq3i1d0c42053.sel3.cloudtype.app/api/qna"
+
+src\QnaReply.js:
+  7:   "https://port-0-mallapi-mpjgq3i1d0c42053.sel3.cloudtype.app";
+
+src\api\productApi.js:
+  3: //const host = "https://mallapi.cloudtype.app";

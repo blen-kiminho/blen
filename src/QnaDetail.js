@@ -1,61 +1,58 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
 
-const API =
-  "https://port-0-mallapi-mpjgq3i1d0c42053.sel3.cloudtype.app";
+const API = "https://port-0-activecable-mpttw6di3d47490d.sel3.cloudtype.app";
 
 export default function QnaDetail() {
-  const { id } = useParams();
+  const { id } = useParams(); // URL의 :id 파라미터
   const navigate = useNavigate();
 
-  const [qna, setQna] = useState(null);
-  const [replies, setReplies] = useState([]);
-  const [text, setText] = useState("");
+  const [qna, setQna] = useState(null); // 질문+답변 통합 데이터
+  const [text, setText] = useState(""); // 답변 입력창 상태
 
   // =========================
-  // 📌 질문 상세
+  // 📌 질문 및 답변 상세 조회
   // =========================
-  const loadQna = async () => {
+  const loadQna = useCallback(async () => {
+    if (!id) return;
     try {
       const res = await axios.get(`${API}/api/qna/${id}`);
       setQna(res.data);
+      
+      // 이미 등록된 답변(reply)이 있다면 입력창에 미리 보여주기
+      if (res.data.reply) {
+        setText(res.data.reply);
+      } else {
+        setText("");
+      }
     } catch (err) {
-      console.log(err);
+      console.error("데이터 로드 실패:", err);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    loadQna();
+  }, [loadQna]);
 
   // =========================
-  // 📌 댓글 리스트
+  // 📌 답변 등록/수정 (PUT 요청)
   // =========================
-  const loadReplies = async () => {
-    try {
-      const res = await axios.get(`${API}/api/qna/reply/${id}`);
-      setReplies(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  // =========================
-  // 📌 댓글 등록
-  // =========================
-  const submitReply = async () => {
+  const submitReply = async (e) => {
+    if (e) e.preventDefault();
     if (!text.trim()) return;
 
     try {
-      await axios.post(`${API}/api/qna/reply/${id}`, {
-        content: text,
+      // 🌟 백엔드 QnaController의 @PutMapping("/reply/{qno}") 와 명확히 일치시킵니다.
+      await axios.put(`${API}/api/qna/reply/${id}`, {
+        reply: text, // 백엔드 map.get("reply") 구조와 맞춤
       });
 
-      setText("");
-      loadReplies(); // ⭐ 즉시 갱신
+      alert("답변이 저장되었습니다.");
+      loadQna(); // 등록 완료 후 변경된 데이터를 다시 불러와 화면 갱신
     } catch (err) {
-      console.log(err.toJSON?.());
-      console.log(err.message);
-      console.log(err.code);
-      console.log(err);
-      alert("댓글 등록 실패");
+      console.error("답변 저장 실패:", err);
+      alert("답변 저장 실패");
     }
   };
 
@@ -67,154 +64,62 @@ export default function QnaDetail() {
       await axios.delete(`${API}/api/qna/${id}`);
       navigate("/qna");
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
-  // =========================
-  // 📌 최초 로딩
-  // =========================
-  useEffect(() => {
-    loadQna();
-    loadReplies();
-  }, [id]);
-
-  // =========================
-  // 📌 로딩 상태
-  // =========================
   if (!qna) {
-    return (
-      <div style={{ textAlign: "center", padding: "100px" }}>
-        Loading...
-      </div>
-    );
+    return <div style={{ textAlign: "center", padding: "100px" }}>Loading...</div>;
   }
 
-  // =========================
-  // 📌 UI
-  // =========================
   return (
-    <div
-      style={{
-        maxWidth: "850px",
-        margin: "0 auto",
-        padding: "60px 20px",
-        fontFamily: "Arial",
-      }}
-    >
-      {/* =========================
-          📌 질문 영역
-      ========================= */}
-      <div
-        style={{
-          border: "1px solid #eee",
-          borderRadius: "12px",
-          padding: "25px",
-          marginBottom: "30px",
-        }}
-      >
+    <div style={{ maxWidth: "850px", margin: "0 auto", padding: "60px 20px", fontFamily: "Arial" }}>
+      
+      {/* 📌 상품 문의 상세 영역 */}
+      <div style={{ border: "1px solid #eee", borderRadius: "12px", padding: "25px", marginBottom: "30px" }}>
         <h2>{qna.title}</h2>
-        <p style={{ color: "#666" }}>{qna.writer}</p>
+        <p style={{ color: "#666" }}>작성자: {qna.writer}</p>
         <hr />
-        <p style={{ marginTop: "15px" }}>{qna.content}</p>
+        <p style={{ marginTop: "15px", whiteSpace: "pre-wrap" }}>{qna.content}</p>
       </div>
 
-      {/* =========================
-          📌 댓글 입력
-      ========================= */}
-      <div
-        style={{
-          display: "flex",
-          gap: "10px",
-          marginBottom: "20px",
-        }}
-      >
-        <input
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="댓글을 입력하세요"
-          style={{
-            flex: 1,
-            padding: "12px",
-            border: "1px solid #ddd",
-            borderRadius: "8px",
-          }}
-        />
-
-        <button
-          onClick={submitReply}
-          style={{
-            padding: "12px 18px",
-            border: "none",
-            background: "#111",
-            color: "#fff",
-            borderRadius: "8px",
-            cursor: "pointer",
-          }}
-        >
-          등록
-        </button>
-      </div>
-
-      {/* =========================
-          📌 댓글 리스트
-      ========================= */}
-      <div>
-        {replies.length === 0 ? (
-          <p style={{ color: "#888" }}>댓글이 없습니다.</p>
+      {/* 📌 현재 등록된 관리자 답변 확인 영역 */}
+      <div style={{ marginBottom: "30px", padding: "20px", background: "#f9f9f9", borderRadius: "8px", borderLeft: "4px solid #111" }}>
+        <h3 style={{ margin: 0 }}>🔒 관리자 답변</h3>
+        {qna.reply ? (
+          <p style={{ marginTop: "10px", color: "#333", whiteSpace: "pre-wrap" }}>{qna.reply}</p>
         ) : (
-          replies.map((r) => (
-            <div
-              key={r.id}
-              style={{
-                padding: "15px",
-                borderBottom: "1px solid #eee",
-              }}
-            >
-              <div>{r.content}</div>
-              <small style={{ color: "#999" }}>
-                {r.createdAt}
-              </small>
-            </div>
-          ))
+          <p style={{ marginTop: "10px", color: "#888" }}>등록된 답변이 없습니다.</p>
         )}
       </div>
 
-      {/* =========================
-          📌 하단 버튼
-      ========================= */}
-      <div
-        style={{
-          marginTop: "40px",
-          display: "flex",
-          gap: "10px",
-        }}
-      >
+      {/* 📌 답변 작성 및 수정 폼 */}
+      <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+        <input
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="답변 내용을 입력하거나 수정하세요"
+          style={{ flex: 1, padding: "12px", border: "1px solid #ddd", borderRadius: "8px" }}
+        />
         <button
-          onClick={() => navigate("/qna")}
-          style={{
-            padding: "10px 16px",
-            border: "1px solid #ddd",
-            background: "#fff",
-            borderRadius: "8px",
-          }}
+          type="button"
+          onClick={submitReply}
+          style={{ padding: "12px 18px", border: "none", background: "#111", color: "#fff", borderRadius: "8px", cursor: "pointer" }}
         >
+          답변 저장
+        </button>
+      </div>
+
+      {/* 📌 하단 메뉴 버튼 */}
+      <div style={{ marginTop: "40px", display: "flex", gap: "10px" }}>
+        <button onClick={() => navigate("/qna")} style={{ padding: "10px 16px", border: "1px solid #ddd", background: "#fff", borderRadius: "8px", cursor: "pointer" }}>
           목록
         </button>
-
-        <button
-          onClick={deletePost}
-          style={{
-            padding: "10px 16px",
-            border: "none",
-            background: "#ff4d4f",
-            color: "#fff",
-            borderRadius: "8px",
-          }}
-        >
+        <button onClick={deletePost} style={{ padding: "10px 16px", border: "none", background: "#ff4d4f", color: "#fff", borderRadius: "8px", cursor: "pointer" }}>
           삭제
         </button>
       </div>
+
     </div>
   );
 }

@@ -2,7 +2,7 @@
   "name": "mall",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://port-0-mallapi-mpjgq3i1d0c42053.sel3.cloudtype.app",
+  "proxy": "https://port-0-activecable-mpttw6di3d47490d.sel3.cloudtype.app//api/qna/reply",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -49,7 +49,5 @@
     "postcss": "^8.5.12",
     "tailwindcss": "^4.2.4"
   },
-  
-
   "homepage": "https://parkhaemin.github.io/activecable"
 }
