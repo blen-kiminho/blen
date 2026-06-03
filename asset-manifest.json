@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/activecable/static/css/main.f9f5d543.css",
-    "main.js": "/activecable/static/js/main.6704ecf9.js",
+    "main.js": "/activecable/static/js/main.8e8efd84.js",
     "static/js/453.af558097.chunk.js": "/activecable/static/js/453.af558097.chunk.js",
     "index.html": "/activecable/index.html",
     "main.f9f5d543.css.map": "/activecable/static/css/main.f9f5d543.css.map",
-    "main.6704ecf9.js.map": "/activecable/static/js/main.6704ecf9.js.map",
+    "main.8e8efd84.js.map": "/activecable/static/js/main.8e8efd84.js.map",
     "453.af558097.chunk.js.map": "/activecable/static/js/453.af558097.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f9f5d543.css",
-    "static/js/main.6704ecf9.js"
+    "static/js/main.8e8efd84.js"
   ]
 }
