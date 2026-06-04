@@ -12,36 +12,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerock.mallapi.entity.Qna;
-import org.zerock.mallapi.repository.QnaRepository;
 import org.zerock.mallapi.service.QnaService;
-import jakarta.transaction.Transactional;
+
 import lombok.RequiredArgsConstructor;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 @RestController
 @RequestMapping("/api/qna")
 @RequiredArgsConstructor
-@CrossOrigin(origins = {
-        "http://localhost:3000",
-        "https://parkhaemin.github.io",
-         "https://parkhaemin.github.io/activecable"
-})
 public class QnaController {
 
     private final QnaService qnaService;
    
+        // QnaController.java 예시
+    @GetMapping("/list")
+    public List<Qna> getList() {
+        // 서비스에서 변환 거치지 않고 엔티티를 바로 반환하는지 확인
+        return qnaService.getList(); 
+    }
+
     @PutMapping("/reply/{qno}")
     public ResponseEntity<?> reply(@PathVariable Long qno, @RequestBody Map<String, String> map) {
         String reply = map.get("reply");
         qnaService.reply(qno, reply); // 서비스의 메서드를 호출합니다.
         return ResponseEntity.ok().build();
-    }
-    // 전체조회
-    @GetMapping("")
-    public List<Qna> list() {
-
-        return qnaService.list();
     }
 
     // 상세조회

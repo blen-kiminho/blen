@@ -8,6 +8,8 @@ public interface QnaService {
 
     List<Qna> list();
 
+    List<Qna> getList();    
+
     Qna detail(Long id);   // ⭐ 추가
 
     Qna create(Qna qna);
@@ -15,6 +17,8 @@ public interface QnaService {
     Qna update(Long id, Qna qna);
 
     void delete(Long id);
+
+    
 
     void reply(Long qno, String reply);
 }
