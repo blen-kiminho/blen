@@ -3,7 +3,6 @@ package org.zerock.mallapi.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.zerock.mallapi.entity.Qna;
 import org.zerock.mallapi.repository.QnaRepository;
 
@@ -16,12 +15,12 @@ import lombok.RequiredArgsConstructor;
 public class QnaServiceImpl implements QnaService {
 
     private final QnaRepository qnaRepository;
-
-    @GetMapping("/list")
+    
+    @Override
     public List<Qna> getList() {
         // 서비스(qnaService)를 거치지 않고, JPA가 제공하는 기본 findAll()을 사용하여 
         // DB에 있는 모든 필드(id, title, content, writer, created_at 등)를 날것 그대로 가져옵니다.
-        return qnaRepository.findAll(); 
+        return qnaRepository.findAllQna(); 
     }
 
      @Override
@@ -35,7 +34,7 @@ public class QnaServiceImpl implements QnaService {
     @Override
     public List<Qna> list() {
 
-        return qnaRepository.findAll();
+        return qnaRepository.findAllQna();
     }
 
     @Override
