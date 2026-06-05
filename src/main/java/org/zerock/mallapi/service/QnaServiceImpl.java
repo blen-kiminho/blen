@@ -70,4 +70,13 @@ public class QnaServiceImpl implements QnaService {
         qnaRepository.deleteById(id);
     }
 
+    // Native SQL을 사용하여 전체 데이터를 강제로 조회하는 메서드
+    public List<Qna> getQnaListRaw() {
+        List<Qna> list = qnaRepository.findAllByRawSQL();
+        
+        // [디버깅용] 서버 로그에 진짜로 데이터가 뽑혀오는지 개수를 찍어봅니다.
+        System.out.println("====== DB에서 가져온 QnA 개수: " + list.size() + " ======");
+        
+        return list;
+    }
 }

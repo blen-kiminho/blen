@@ -19,4 +19,6 @@ public interface QnaService {
     void delete(Long id);
 
     void reply(Long qno, String reply);
+
+    List<Qna> getQnaListRaw();
 }

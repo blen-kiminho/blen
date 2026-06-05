@@ -31,18 +31,11 @@ public class Qna {
 
     private String content;
 
-    // 🌟 DB의 'writer' 컬럼명 매핑
-    @Column(name = "writer")
-    private String writer; 
-
-    // 🌟 변수명을 createdAt(카멜케이스)으로 변경하여 하이버네이트 및 Jackson 버그 완벽 방지
-    @Column(name = "created_at")
-    private LocalDateTime createdAt; 
-
-    @Column(length = 2000)
-    private String reply;
-
-    // --- 명시적 Getter / Setter (네이밍 규칙 통일 및 JSON 출력 보장) ---
+    @Column(name="writer")
+    private  String writer;
+    
+    @Column(name="created_at")
+    private LocalDateTime created_at;
 
     public Long getId() {
         return id;
@@ -68,28 +61,23 @@ public class Qna {
         this.content = content;
     }
 
-    public String getWriter() {
-        return this.writer;
-    }
-
     public void setWriter(String writer) {
         this.writer = writer;
     }
 
-    // 🌟 변수명과 메서드명을 완벽히 일치시켰습니다.
-    public LocalDateTime getCreatedAt() {
-        return this.createdAt;
+    public String getWriter() {
+        return writer;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
 
-    public String getReply() {
-        return reply;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setReply(String reply) {
-        this.reply = reply;
-    }
+    @Column(length = 2000)
+    private String reply;
+
 }

@@ -20,23 +20,34 @@ import org.zerock.mallapi.service.QnaService; // 🌟 추가: 본인 프로젝�
 
 import lombok.RequiredArgsConstructor;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
-        RequestMethod.DELETE, RequestMethod.OPTIONS })
+
+@CrossOrigin(origins = "*", allowedHeaders = "*", methods = { 
+        RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+        RequestMethod.DELETE, RequestMethod.OPTIONS 
+})
 @RestController
 @RequestMapping("/api/qna")
 @RequiredArgsConstructor
 public class QnaController {
 
     private final QnaService qnaService;
-    private final QnaRepository qnaRepository; // 🌟 추가: 모든 필드를 강제 조회하기 위해 리포지토리 직접 주입
+    private final QnaRepository qnaRepository;
 
+    // 1. RAW SQL 전체 조회 (가장 최상단 배치 + 슬래시 추가)
+    // URL 주소: https://.../api/qna/list-raw
+    @GetMapping("/list-raw")
+    public List<Qna> getAllQnaRaw() {
+        return qnaService.getQnaListRaw();
+    }
+    
+    // 2. 기본 전체 조회 (슬래시 추가)
+    // URL 주소: https://.../api/qna/list
     @GetMapping("/list")
     public List<Qna> getList() {
-        // 🌟 서비스(QnaService)단의 누락 가공 처리를 무시하고,
-        // JPA의 기본 Repository를 사용하여 DB에 있는 모든 컬럼(writer, created_at 포함)을 날것 그대로 반환합니다.
         return qnaRepository.findAllQna();
     }
 
+    // 3. 답변 등록/수정
     @PutMapping("/reply/{qno}")
     public ResponseEntity<?> reply(@PathVariable Long qno, @RequestBody Map<String, String> map) {
         String reply = map.get("reply");
@@ -44,27 +55,29 @@ public class QnaController {
         return ResponseEntity.ok().build();
     }
 
-    // 상세조회
+    // ========================================================
+    // ⚠️ 가변 경로(PathVariable) 패턴들은 무조건 최하단에 둡니다.
+    // ========================================================
+
+    // 4. 상세조회 (이제 /list-raw 나 /list 요청을 뺏어가지 않습니다)
     @GetMapping("/{id}")
     public Qna detail(@PathVariable Long id) {
         return qnaService.detail(id);
     }
 
-    // 등록
+    // 5. 등록
     @PostMapping
     public Qna create(@RequestBody Qna qna) {
         return qnaService.create(qna);
     }
 
-    // 수정
+    // 6. 수정
     @PutMapping("/{id}")
-    public Qna update(
-            @PathVariable Long id,
-            @RequestBody Qna qna) {
+    public Qna update(@PathVariable Long id, @RequestBody Qna qna) {
         return qnaService.update(id, qna);
     }
 
-    // 삭제
+    // 7. 삭제
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         qnaService.delete(id);
