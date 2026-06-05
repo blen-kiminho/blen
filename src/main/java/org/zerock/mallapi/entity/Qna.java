@@ -35,6 +35,10 @@ public class Qna {
  
     private LocalDateTime created_at;
 
+    // 💡 reply 필드를 다시 안전하게 추가합니다.
+    @Column(length = 2000)
+    private String reply;
+
     public Long getId() {
         return id;
     }
@@ -75,7 +79,12 @@ public class Qna {
         return created_at;
     }
 
-    @Column(length = 2000)
-    private String reply;
+    public String getReply() {
+         return reply;
+     }
 
+    public void setReply(String reply) {
+        this.reply = reply;
+   
+    }
 }
