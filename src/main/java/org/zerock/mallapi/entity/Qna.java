@@ -31,10 +31,8 @@ public class Qna {
 
     private String content;
 
-    @Column(name="writer")
     private  String writer;
-    
-    @Column(name="created_at")
+ 
     private LocalDateTime created_at;
 
     public Long getId() {

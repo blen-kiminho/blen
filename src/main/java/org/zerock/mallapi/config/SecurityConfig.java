@@ -18,22 +18,29 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // 🌟 빌더 패턴 문법이 끊어지지 않도록 하나의 흐름으로 이어붙였습니다.
-        http
-            .csrf(csrf -> csrf.disable())
-            // 🌟 주석 처리하셨던 외부 CORS 설정을 스프링 시큐리티 최신 표준(withDefaults)으로 연동했습니다.
-            .cors(Customizer.withDefaults()) 
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/health").permitAll()
-                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .anyRequest().permitAll()
-            );
+   @Bean
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+        // 1. API 서버이므로 CSRF 보안은 완전히 비활성화
+        .csrf(csrf -> csrf.disable())
+        
+        // 2. 외부 CORS 설정을 스프링 시큐리티 표준 규격으로 연동
+        .cors(Customizer.withDefaults()) 
+        
+        // 3. 브라우저가 자동으로 띄우는 기본 로그인 폼 화면 및 HTTP Basic 인증창을 완전히 무력화
+        .formLogin(form -> form.disable())
+        .httpBasic(basic -> basic.disable())
+        
+        // 4. 경로별 접근 권한 설정 (모든 요청을 무조건 허용)
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/", "/health").permitAll()
+            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // CORS Preflight 허용
+            .requestMatchers("/api/qna/list", "/api/qna/**").permitAll() // QnA 경로 명시적 허용
+            .anyRequest().permitAll() // 그 외 모든 요청도 로그인 없이 통과
+        );
 
-        return http.build();
-    }
-
+    return http.build();
+}
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();

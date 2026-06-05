@@ -21,7 +21,7 @@ public class Reply {
 
     private String content;
 
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime created_at = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "qna_id")
