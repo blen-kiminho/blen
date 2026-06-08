@@ -1,14 +1,15 @@
 package org.zerock.mallapi.service;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.zerock.mallapi.entity.Qna;
 import org.zerock.mallapi.entity.Reply;
-import org.zerock.mallapi.repository.QnaRepository;
+import org.zerock.mallapi.repository.QnaRepository; // @Service 임포트 필수
 import org.zerock.mallapi.repository.ReplyRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service; // @Service 임포트 필수
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 @Service // [핵심] @RestController 대신 반드시 @Service를 사용하세요.
 @RequiredArgsConstructor

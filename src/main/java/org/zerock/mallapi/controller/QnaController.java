@@ -3,6 +3,7 @@ package org.zerock.mallapi.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,6 +29,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/qna")
 @RequiredArgsConstructor
+@Autowired // 🌟 추가: 생성자 주입을 위한 어노테이션
 public class QnaController {
 
     private final QnaService qnaService;
