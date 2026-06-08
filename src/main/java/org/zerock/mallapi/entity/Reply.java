@@ -8,11 +8,20 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@Getter @Setter
+@Getter // 🌟 추가: 설정을 읽어오기 위함
+@Setter // 🌟 추가: setContent, setQna 메서드를 자동으로 만들어줌
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString(exclude = "qna")
 public class Reply {
 
     @Id
