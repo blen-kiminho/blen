@@ -29,7 +29,6 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/qna")
 @RequiredArgsConstructor
-@Autowired // 🌟 추가: 생성자 주입을 위한 어노테이션
 public class QnaController {
 
     private final QnaService qnaService;
@@ -46,7 +45,7 @@ public class QnaController {
     // URL 주소: https://.../api/qna/list
     @GetMapping("/list")
     public List<Qna> getList() {
-        return qnaRepository.findAllQna();
+        return qnaRepository.findAll();
     }
 
     // 3. 답변 등록/수정
