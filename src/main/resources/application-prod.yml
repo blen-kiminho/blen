@@ -3,6 +3,12 @@ spring:
     allow-bean-definition-overriding: true
     banner-mode: "off"
 
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
+
   # 1. Spring Security 자동 구성 엔진 단계에서 완전히 끄기 (CORS 및 접근 통제 해제)
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
