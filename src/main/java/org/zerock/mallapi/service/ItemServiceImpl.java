@@ -13,6 +13,7 @@ public class ItemServiceImpl implements ItemService {
     private final ItemRepository itemRepository;
 
     // 이 메소드가 없어서 에러가 나는 것입니다!
+    @Override // 메서드명이 확실한지 체크해줍니다.
     public void saveImagePath(Long itemId, String imagePath) {
         // 1. itemId로 해당 아이템을 DB에서 찾음
         Item item = itemRepository.findById(itemId)

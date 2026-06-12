@@ -24,7 +24,7 @@ public class ItemController {
     // 파일을 저장할 디렉토리 경로 (프로젝트 루트의 'uploads' 폴더)
     private final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/";
 
-    @PostMapping("/image")
+    @PostMapping(value="/image")
     public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file, 
                                          @RequestParam("itemId") Long itemId) {
         try {
