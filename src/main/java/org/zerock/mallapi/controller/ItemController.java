@@ -24,9 +24,12 @@ public class ItemController {
     // 파일을 저장할 디렉토리 경로 (프로젝트 루트의 'uploads' 폴더)
     private final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/";
 
-    @PostMapping(value="/image")
+    @PostMapping(value = "/image")
     public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file, 
                                          @RequestParam("itemId") Long itemId) {
+
+        System.out.println(">>> 컨트롤러 uploadImage() 호출됨" + " itemId: " + itemId);                                     
+       
         try {
             // 1. 디렉토리가 없으면 생성
             File directory = new File(UPLOAD_DIR);
@@ -52,8 +55,11 @@ public class ItemController {
             return ResponseEntity.ok("업로드 성공: " + savedFilename);
 
         } catch (IOException e) {
+            System.err.println("파일 저장 실패: " + UPLOAD_DIR);
             e.printStackTrace();
             return ResponseEntity.status(500).body("파일 저장 실패: " + e.getMessage());
         }
     }
+
+    
 }

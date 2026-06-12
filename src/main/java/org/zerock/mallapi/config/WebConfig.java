@@ -9,13 +9,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    // 1. 이미지 파일 접근을 위한 정적 리소스 핸들러
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // 실제 운영 환경(Cloudtype 등)에서는 C:/ 경로가 동작하지 않을 수 있습니다.
-        // 리눅스 환경이라면 "/home/user/files/items/" 등으로 변경이 필요할 수 있습니다.
+        // 1. Cloudtype(리눅스) 환경에 맞는 절대 경로 사용
+        // 파일이 서버의 /tmp/uploads/items/ 에 저장된다고 가정할 때
         registry.addResourceHandler("/items/**")
-                .addResourceLocations("file:///C:/my-server-files/items/");
+                .addResourceLocations("file:/tmp/uploads/items/"); 
+        
+        // 2. [추가] 프론트엔드 정적 파일 서빙 (index.html 등)
+        registry.addResourceHandler("/**")
+                .addResourceLocations("classpath:/static/");
     }
 
     // 2. CORS 설정
