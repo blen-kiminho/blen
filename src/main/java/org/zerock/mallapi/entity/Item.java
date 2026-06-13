@@ -56,6 +56,6 @@ public class Item {
     }
 
     public void changeCategory(String category) {
-    this.category = category;
+        this.category = category;
     }
 }

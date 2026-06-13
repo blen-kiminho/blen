@@ -1,19 +1,21 @@
 package org.zerock.mallapi.service;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.zerock.mallapi.entity.Item;
 import org.zerock.mallapi.repository.ItemRepository;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.UUID;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
@@ -51,4 +53,10 @@ public class ItemServiceImpl implements ItemService {
             throw new RuntimeException("파일 저장 중 오류가 발생했습니다: " + e.getMessage());
         }
     } // 메서드 끝 괄호
+
+    // ItemServiceImpl.java (구현체)
+   @Override
+    public List<Item> getItemsByCategory(String category) {
+        return itemRepository.findByCategory(category);
+    }
 } // 클래스 끝 괄호
