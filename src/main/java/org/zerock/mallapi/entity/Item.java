@@ -55,4 +55,7 @@ public class Item {
         this.description = description;
     }
 
+    public void changeCategory(String category) {
+    this.category = category;
+    }
 }
