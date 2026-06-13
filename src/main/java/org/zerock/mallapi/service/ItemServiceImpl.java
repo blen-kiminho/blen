@@ -1,28 +1,54 @@
 package org.zerock.mallapi.service;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import org.zerock.mallapi.entity.Item;
 import org.zerock.mallapi.repository.ItemRepository;
 
-import lombok.RequiredArgsConstructor;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ItemServiceImpl implements ItemService {
 
     private final ItemRepository itemRepository;
+    // 경로 구분자를 시스템 환경에 맞게 안전하게 설정
+    private final String UPLOAD_DIR = System.getProperty("user.dir") + File.separator + "uploads" + File.separator;
 
-    // 이 메소드가 없어서 에러가 나는 것입니다!
-    @Override // 메서드명이 확실한지 체크해줍니다.
-    public void saveImagePath(Long itemId, String imagePath) {
-        // 1. itemId로 해당 아이템을 DB에서 찾음
-        Item item = itemRepository.findById(itemId)
-            .orElseThrow(() -> new IllegalArgumentException("아이템을 찾을 수 없습니다."));
+    @Override
+    public String uploadImage(Long itemId, MultipartFile file) {
+        try {
+            // 1. 디렉토리 존재 확인 및 생성
+            Path uploadPath = Paths.get(UPLOAD_DIR);
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
 
-        // 2. 이미지 경로 업데이트
-        item.changeImagePath(imagePath); // (엔티티에 정의된 수정 메소드 사용)
+            // 2. 파일 이름 생성 및 저장
+            String savedFileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
+            Path targetLocation = uploadPath.resolve(savedFileName);
+            Files.copy(file.getInputStream(), targetLocation);
 
-        // 3. 저장
-        itemRepository.save(item);
-    }
-}
+            // 3. DB 엔티티 조회 및 이미지 경로 업데이트
+            Item item = itemRepository.findById(itemId)
+                    .orElseThrow(() -> new IllegalArgumentException("상품이 존재하지 않습니다. ID: " + itemId));
+            
+            item.changeImagePath(savedFileName);
+            
+            return savedFileName;
+        } catch (IOException e) {
+            log.error("파일 저장 실패", e);
+            throw new RuntimeException("파일 저장 중 오류가 발생했습니다: " + e.getMessage());
+        }
+    } // 메서드 끝 괄호
+} // 클래스 끝 괄호

@@ -35,6 +35,8 @@ public class Item {
     // 핵심: 이미지 파일 경로를 저장할 필드
     private String imagePath; 
 
+    private String category;//상품 카테고리
+
     // 이미지 경로를 수정하기 위한 비즈니스 메소드
     public void changeImagePath(String imagePath) {
         this.imagePath = imagePath;
@@ -48,4 +50,9 @@ public class Item {
     public void changePrice(int price) {
         this.price = price;
     }
+
+    public void changeDescription(String description) {
+        this.description = description;
+    }
+
 }
