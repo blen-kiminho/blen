@@ -71,9 +71,14 @@ public class ItemController {
         @RequestParam("description") String description) {
     
     // 1. 파일 저장 로직은 기존처럼 수행
-    // 2. 받은 데이터로 Item 객체 생성
-        Item item = new Item(name, price, category, description, file.getOriginalFilename());
-    
+   // 2. 빌더 패턴으로 객체 생성
+    Item item = Item.builder()
+            .name(name)
+            .price(price)
+            .category(category)
+            .description(description)
+            .imagePath(file.getOriginalFilename()) // 파일명 저장
+            .build();
     // 3. 서비스 호출하여 DB 저장
         return ResponseEntity.ok(itemService.save(item));
     }
