@@ -62,4 +62,19 @@ public class ItemController {
         return ResponseEntity.ok(items);
     }
 
-}
+    @PostMapping("/new")
+    public ResponseEntity<?> createItem(
+        @RequestParam("file") MultipartFile file,
+        @RequestParam("name") String name,
+        @RequestParam("price") int price,
+        @RequestParam("category") String category,
+        @RequestParam("description") String description) {
+    
+    // 1. 파일 저장 로직은 기존처럼 수행
+    // 2. 받은 데이터로 Item 객체 생성
+        Item item = new Item(name, price, category, description, file.getOriginalFilename());
+    
+    // 3. 서비스 호출하여 DB 저장
+        return ResponseEntity.ok(itemService.save(item));
+    }
+}   

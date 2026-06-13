@@ -59,4 +59,9 @@ public class ItemServiceImpl implements ItemService {
     public List<Item> getItemsByCategory(String category) {
         return itemRepository.findByCategory(category);
     }
+
+    @Override
+    public Item save(Item item) {
+        return itemRepository.save(item);
+    }
 } // 클래스 끝 괄호
