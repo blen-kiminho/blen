@@ -1,5 +1,6 @@
 package org.zerock.mallapi.controller;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -32,7 +33,7 @@ public class ItemController {
 
     // 1. 업로드 API
     @PostMapping("/image")
-    public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file, @RequestParam("itemId") Long itemId) {
+    public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file, @RequestParam("itemId") Long itemId) throws IOException {
         return ResponseEntity.ok(itemService.uploadImage(itemId, file));
     }
 
@@ -81,5 +82,18 @@ public class ItemController {
             .build();
     // 3. 서비스 호출하여 DB 저장
         return ResponseEntity.ok(itemService.save(item));
+    }
+
+    @PostMapping("/api/items/{itemId}/upload")
+    public ResponseEntity<?> uploadItemImage(
+        @PathVariable("itemId") Long itemId,
+        @RequestParam("image") MultipartFile file) {
+        try {
+        // 서비스단에 itemId와 파일 객체를 함께 넘겨줍니다.
+             itemService.uploadImage(itemId, file);
+             return ResponseEntity.ok().body("이미지 업로드 및 DB 갱신 완료");
+         } catch (Exception e) {
+            return ResponseEntity.status(500).body("이미지 업로드 실패: " + e.getMessage());
+         }
     }
 }   

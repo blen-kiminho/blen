@@ -30,6 +30,7 @@ public class Reply {
 
     private String content;
 
+    @Builder.Default
     private LocalDateTime created_at = LocalDateTime.now();
 
     @ManyToOne
