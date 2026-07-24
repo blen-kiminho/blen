@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://parkhaemin.github.io/mall/sitemap.xml
+Sitemap: https://blen-kiminho.github.io/mall/sitemap.xml

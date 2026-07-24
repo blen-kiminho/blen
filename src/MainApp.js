@@ -1,63 +1,85 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 
-// 이미지
-const IMG_MAIN1 = process.env.PUBLIC_URL + "/kable1.jpg";
-const IMG_MAIN2 = process.env.PUBLIC_URL + "/kable2.jpg";
-const IMG_MAIN3 = process.env.PUBLIC_URL + "/kable3.jpg";
-const IMG_MAIN4 = process.env.PUBLIC_URL + "/kable4.jpg";
+// public 폴더 안의 이미지 경로
+const IMG_MAIN1 = `${process.env.PUBLIC_URL}/blen-main1.jpg`;
+const IMG_MAIN2 = `${process.env.PUBLIC_URL}/blen-main2.jpg`;
+const IMG_MAIN3 = `${process.env.PUBLIC_URL}/blen-main3.jpg`;
+const IMG_MAIN4 = `${process.env.PUBLIC_URL}/blen-main4.jpg`;
 
-// 상품
 const products = [
-  { id: 1, name: "KABLE Man sleveless", price: 39000, img: IMG_MAIN1 },
-  { id: 2, name: "KABLE Woman sleveless", price: 49000, img: IMG_MAIN2 },
-  { id: 3, name: "KABLE Man Long Sleeve", price: 42000, img: IMG_MAIN3 },
-  { id: 4, name: "KABLE Woman Top ", price: 39000, img: IMG_MAIN4 },
+  {
+    id: 1,
+    name: "BLEN Man front-black",
+    price: 39000,
+    img: IMG_MAIN1,
+  },
+  {
+    id: 2,
+    name: "BLEN Man front-white",
+    price: 49000,
+    img: IMG_MAIN2,
+  },
+  {
+    id: 3,
+    name: "BLEN Man back-black",
+    price: 42000,
+    img: IMG_MAIN3,
+  },
+  {
+    id: 4,
+    name: "BLEN Man back-white",
+    price: 39000,
+    img: IMG_MAIN4,
+  },
 ];
 
-
-// HERO
+// 메인 히어로 영역
 function Hero() {
   return (
     <section
       style={{
         position: "relative",
-        height: "100vh",
+        minHeight: "calc(100vh - 72px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        flexDirection: "column",
-        background: "#fff",
+        background: "#ffffff",
         overflow: "hidden",
+        padding: "60px 20px",
+        boxSizing: "border-box",
       }}
     >
-      {/* 흐르는 배경 */}
+      {/* 흐르는 배경 문자 */}
       <div
         style={{
           position: "absolute",
           top: "-20%",
+          left: "50%",
+          transform: "translateX(-50%)",
           display: "flex",
           flexDirection: "column",
+          alignItems: "center",
           gap: "40px",
           animation: "flowDown 12s linear infinite",
           opacity: 0.04,
-          fontSize: "120px",
+          fontSize: "clamp(70px, 10vw, 120px)",
           fontWeight: "700",
           letterSpacing: "20px",
+          whiteSpace: "nowrap",
           pointerEvents: "none",
           userSelect: "none",
           zIndex: 1,
         }}
       >
-        <span>KABLE</span>
-        <span>KABLE</span>
-        <span>KABLE</span>
-        <span>KABLE</span>
-        <span>KABLE</span>
+        <span>BLEN</span>
+        <span>BLEN</span>
+        <span>BLEN</span>
+        <span>BLEN</span>
+        <span>BLEN</span>
       </div>
 
-      {/* 메인 */}
+      {/* 메인 콘텐츠 */}
       <div
         style={{
           position: "relative",
@@ -65,54 +87,62 @@ function Hero() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          textAlign: "center",
         }}
       >
         <div
-  style={{
-    display: "flex",
-    alignItems: "flex-end",
-    gap: "14px",
-    marginBottom: "10px",
-  }}
->
-  <h1
-    style={{
-      fontSize: "80px",
-      letterSpacing: "20px",
-      fontWeight: "700",
-      margin: 0,
-      lineHeight: 1,
-    }}
-  >
-    KABLE
-  </h1>
+          style={{
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            gap: "14px",
+            marginBottom: "10px",
+          }}
+        >
+          <h1
+            style={{
+              fontSize: "clamp(48px, 8vw, 80px)",
+              letterSpacing: "clamp(8px, 2vw, 20px)",
+              fontWeight: "700",
+              margin: 0,
+              lineHeight: 1,
+            }}
+          >
+            BLEN
+          </h1>
 
-  <span
-    style={{
-      fontSize: "24px",
-      color: "#666",
-      letterSpacing: "4px",
-      marginBottom: "10px",
-      fontWeight: "500",
-    }}
-  >
-    ACTIVE FASHION BRAND
-  </span>
-</div>
+          <span
+            style={{
+              fontSize: "clamp(14px, 2vw, 24px)",
+              color: "#666",
+              letterSpacing: "4px",
+              marginBottom: "8px",
+              fontWeight: "500",
+            }}
+          >
+            FASHION BRAND
+          </span>
+        </div>
 
-        {/* 로고 */}
+        {/* 로고 이미지 */}
         <img
-          src={process.env.PUBLIC_URL + "/kable_logo.jpg"}
-          alt="KABLE LOGO"
+          src={`${process.env.PUBLIC_URL}/blen_logo.jpg`}
+          alt="BLEN 로고"
+          onError={(event) => {
+            console.error("로고 이미지를 불러오지 못했습니다:", event.currentTarget.src);
+            event.currentTarget.style.display = "none";
+          }}
           style={{
             width: "190px",
+            maxWidth: "60%",
+            height: "auto",
             marginTop: "20px",
             marginBottom: "30px",
             objectFit: "contain",
           }}
         />
 
-        {/* 스크롤 유도 */}
         <div
           style={{
             display: "flex",
@@ -142,23 +172,22 @@ function Hero() {
           </span>
         </div>
 
-        {/* 서브텍스트 */}
         <p
           style={{
+            margin: 0,
             fontSize: "14px",
             color: "#777",
             letterSpacing: "3px",
           }}
         >
-         ACTIVE FASHION BRAND
+          BLEN FASHION BRAND
         </p>
       </div>
     </section>
   );
 }
 
-
-// FLOW LOGO
+// 흐르는 로고 영역
 function FlowLogo() {
   return (
     <section
@@ -169,7 +198,6 @@ function FlowLogo() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        flexDirection: "column",
         borderTop: "1px solid #eee",
         borderBottom: "1px solid #eee",
       }}
@@ -178,20 +206,22 @@ function FlowLogo() {
         style={{
           display: "flex",
           flexDirection: "column",
+          alignItems: "center",
           gap: "25px",
           animation: "flowDown 10s linear infinite",
           opacity: 0.08,
-          fontSize: "70px",
+          fontSize: "clamp(42px, 7vw, 70px)",
           fontWeight: "700",
           letterSpacing: "18px",
+          whiteSpace: "nowrap",
           userSelect: "none",
           pointerEvents: "none",
         }}
       >
-        <span>KABLE</span>
-        <span>KABLE</span>
-        <span>KABLE</span>
-        <span>KABLE</span>
+        <span>BLEN</span>
+        <span>BLEN</span>
+        <span>BLEN</span>
+        <span>BLEN</span>
       </div>
 
       <div
@@ -220,166 +250,171 @@ function FlowLogo() {
   );
 }
 
-
-// 상품리스트
-function ProductList({ setModalImg }) {
+// 상품 카드
+function ProductCard({ product }) {
   const navigate = useNavigate();
 
   return (
-  <section
-    id="best"
-    tabIndex={-1}
-    style={{
-    padding: "80px 20px",
-    textAlign: "center"
-    }}
-  >
-      <h2 style={{ fontSize: "24px", marginBottom: "30px" }}>
-        BEST SELLER
-      </h2>
+    <article
+      onClick={() => navigate(`/product/${product.id}`)}
+      style={{
+        width: "100%",
+        cursor: "pointer",
+        textAlign: "left",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          aspectRatio: "3 / 4",
+          overflow: "hidden",
+          background: "#f5f5f5",
+        }}
+      >
+        <img
+          src={product.img}
+          alt={product.name}
+          onError={(event) => {
+            console.error(
+              "상품 이미지를 불러오지 못했습니다:",
+              event.currentTarget.src
+            );
+
+            event.currentTarget.style.display = "none";
+          }}
+          style={{
+            display: "block",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            transition: "transform 0.3s ease",
+          }}
+          onMouseEnter={(event) => {
+            event.currentTarget.style.transform = "scale(1.03)";
+          }}
+          onMouseLeave={(event) => {
+            event.currentTarget.style.transform = "scale(1)";
+          }}
+        />
+      </div>
 
       <div
         style={{
-          display: "flex",
-          gap: "20px",
-          flexWrap: "wrap",
+          marginTop: "14px",
+          fontSize: "14px",
+          fontWeight: "500",
+          color: "#222",
         }}
       >
-        {products.map((p) => (
-          <div
-            key={p.id}
-            style={{ cursor: "pointer" }}
-          >
-            <img
-              src={p.img}
-              alt={p.name}
-              onClick={() => navigate(`/product/${p.id}`)}
-              style={{
-                 width: "260px",
-                 objectFit: "cover",
-                 cursor: "pointer",
-              }}
-            />
+        {product.name}
+      </div>
 
-            <div style={{ marginTop: "10px", fontSize: "14px" }}>
-              {p.name}
-            </div>
+      <div
+        style={{
+          marginTop: "6px",
+          fontSize: "13px",
+          color: "#777",
+        }}
+      >
+        ₩{product.price.toLocaleString("ko-KR")}
+      </div>
+    </article>
+  );
+}
 
-            <div
-              style={{
-                fontSize: "13px",
-                color: "#777",
-              }}
-            >
-              ₩{p.price.toLocaleString()}
-            </div>
-          </div>
+// 상품 목록
+function ProductList() {
+  return (
+    <section
+      id="best"
+      tabIndex={-1}
+      style={{
+        width: "100%",
+        maxWidth: "1400px",
+        margin: "0 auto",
+        padding: "100px 30px",
+        boxSizing: "border-box",
+      }}
+    >
+      <h2
+        style={{
+          margin: "0 0 40px",
+          fontSize: "26px",
+          letterSpacing: "3px",
+          textAlign: "center",
+        }}
+      >
+        BEST SELLER
+      </h2>
+
+      <div className="blen-product-grid">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </section>
   );
 }
 
+// 브랜드 소개
+function About() {
+  return (
+    <section
+      style={{
+        maxWidth: "1200px",
+        margin: "120px auto 180px",
+        padding: "0 30px",
+        boxSizing: "border-box",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          gap: "60px",
+          alignItems: "flex-start",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+        }}
+      >
+        <h2
+          style={{
+            margin: 0,
+            fontSize: "24px",
+            letterSpacing: "6px",
+            fontWeight: "700",
+          }}
+        >
+          BLEN 브랜드 스토리
+        </h2>
 
-// 메인앱
+        <p
+          style={{
+            maxWidth: "650px",
+            margin: 0,
+            fontSize: "14px",
+            lineHeight: "1.9",
+            color: "#555",
+            fontStyle: "italic",
+          }}
+        >
+          BLEN은 ‘Blending’에서 유래된 감성 브랜드입니다. 자연스럽게
+          녹아들되, 경계 없이 스며드는 흐름과 조화를 담아냅니다. 서로 다른
+          색이 섞여 새로운 분위기를 만들어내듯, BLEN은 다양한 감각과
+          스타일이 부드럽게 어우러지는 순간을 표현합니다.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// 메인 앱
 export default function MainApp() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [modalImg, setModalImg] = useState(null);
-
-  useEffect(() => {
-    const handleScroll = () => {};
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () =>
-      window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <>
       <Hero />
-
       <FlowLogo />
-
-      <ProductList setModalImg={setModalImg} />
-
-      {/* 이미지 모달 */}
-      {modalImg && (
-        <div
-          onClick={() => setModalImg(null)}
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            background: "rgba(0,0,0,0.8)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: 9999,
-          }}
-        >
-          <img
-            src={modalImg}
-            alt=""
-            style={{
-              maxWidth: "90%",
-              maxHeight: "90vh",
-              objectFit: "contain",
-              background: "#fff",
-              padding: "10px",
-            }}
-          />
-        </div>
-      )}
-
-      {/* ABOUT */}
-      <section
-        style={{
-          maxWidth: "1200px",
-          margin: "200px auto",
-          padding: "0 20px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            gap: "60px",
-            alignItems: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "24px",
-              letterSpacing: "6px",
-              fontWeight: "700",
-            }}
-          >
-            KABLE ACTIVE 브랜드 스토리
-          </h2>
-
-          <p
-            style={{
-              maxWidth: "600px",
-              fontSize: "14px",
-              lineHeight: "1.8",
-              color: "#555",
-              fontStyle: "italic",
-            }}
-          >
-            KABLE은 일상과 운동을 넘나드는 액티브 패션 브랜드입니다. 
-            편안한 착용감과 세련된 디자인을 동시에 추구하여, 운동할 때도 
-            스타일을 포기하지 않는 현대인들을 위한 제품을 선보입니다. 
-            우리의 컬렉션은 고품질 소재와 혁신적인 기술로 제작되어, 
-            활동적인 라이프스타일을 지원합니다. 
-            KABLE과 함께라면, 어디서든 자신감을 가지고 움직일 수 있습니다.
-          </p>
-        </div>
-          
-        
-      </section>
+      <ProductList />
+      <About />
     </>
   );
 }

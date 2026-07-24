@@ -196,3 +196,76 @@ html, body {
   overflow-x: hidden;
   overflow-y: auto;
 }
+
+/* App.css */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { font-family: 'Pretendard', sans-serif; overflow-x: hidden; }
+
+/* 모바일 우선 스타일 (스마트폰) */
+.container { width: 100%; padding: 0 15px; margin: 0 auto; }
+
+/* 태블릿 이상 (768px 이상) */
+@media (min-width: 768px) {
+  .container { max-width: 750px; }
+}
+
+/* PC 화면 (1024px 이상) */
+@media (min-width: 1024px) {
+  .container { max-width: 960px; }
+}
+
+.item-layout {
+  width: 300px;
+  border: 1px solid #ddd;
+}
+.responsive-img {
+  width: 100%;       /* 레이아웃 너비에 꽉 차게 */
+  height: 200px;     /* 고정 높이 */
+  object-fit: cover; /* 이미지가 찌그러지지 않게 잘라내기 */
+}
+
+/* BLEN 상품 목록: PC에서 4개를 한 줄로 표시 */
+.blen-product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+/* 태블릿 */
+@media screen and (max-width: 900px) {
+  .blen-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+/* 모바일 */
+@media screen and (max-width: 520px) {
+  .blen-product-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@keyframes flowDown {
+  0% {
+    transform: translateY(-15%);
+  }
+
+  100% {
+    transform: translateY(15%);
+  }
+}
+
+@keyframes scrollArrow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(8px);
+  }
+}
