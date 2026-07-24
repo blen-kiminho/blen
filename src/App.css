@@ -1,115 +1,361 @@
 /* =========================
-   RESET
+   RESET / GLOBAL
 ========================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
-html, body {
+html,
+body {
   width: 100%;
-  min-height: 100dvh;
+  min-height: 100%;
   overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #111111;
+  font-family:
+    "Pretendard",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  font-size: 14px;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 #root {
   width: 100%;
-  min-height: 100dvh;
-}
-
-body {
-  background: #fff;
-  color: #000;
-  font-size: 14px;
-  padding-top: 70px; /* fixed header 공간 확보 */
+  min-height: 100vh;
 }
 
 /* =========================
-   HEADER
+   공통 레이아웃
 ========================= */
-.header {
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 750px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+/* =========================
+   BLEN HEADER
+========================= */
+
+.blen-header {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  z-index: 2000;
+
   width: 100%;
-  height: 70px;
-  background: white;
-  border-bottom: 1px solid #eee;
-  z-index: 9999;
+  height: 72px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid #eeeeee;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* =========================
-   MENU (기본: 가로)
-========================= */
-.menu {
+.blen-header-inner {
   display: flex;
-  gap: 40px;
-  list-style: none;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  padding: 0 24px;
+  gap: 22px;
 }
 
-.menu li {
-  display: flex;
-  flex-direction: column; /* ⭐ 글자 세로 */
-  align-items: center;
+/* fixed 헤더가 본문을 가리지 않도록 확보하는 공간 */
+.blen-header-space {
+  width: 100%;
+  height: 72px;
+}
+
+/* 헤더 버튼 공통 */
+.blen-icon-button,
+.blen-logo,
+.blen-main-menu-item,
+.blen-side-logo,
+.blen-side-close,
+.blen-side-menu-item {
+  margin: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #222222;
+  font-family: inherit;
   cursor: pointer;
 }
 
-/* 글자 */
-.menu li span {
-  display: block;
-  font-size: 14px;
+/* =========================
+   햄버거 / 아이콘
+========================= */
+
+.blen-icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+  width: 30px;
+  height: 40px;
+  padding: 3px;
+
+  font-size: 17px;
   line-height: 1;
 }
 
-/* =========================
-   SCROLL 변형 (세로 느낌)
-========================= */
-.header.scrolled .menu li {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  letter-spacing: 3px;
-  transition: 0.3s;
+.blen-icon-button:hover {
+  color: #777777;
 }
 
-/* hover */
-.header.scrolled .menu li:hover {
-  opacity: 0.6;
-  transform: scale(1.05);
+.blen-menu-button {
+  font-size: 21px;
 }
 
 /* =========================
-   PRODUCT DETAIL
+   BLEN 로고
 ========================= */
+
+.blen-logo {
+  flex-shrink: 0;
+  padding: 0;
+
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* =========================
+   상단 가로 메뉴
+========================= */
+
+.blen-main-menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  flex: 1;
+  min-width: 0;
+  gap: 20px;
+
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.blen-main-menu-item {
+  flex-shrink: 0;
+
+  padding: 10px 1px;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.blen-main-menu-item:hover {
+  color: #888888;
+}
+
+.admin-menu-item {
+  color: #6baf92;
+  font-weight: 700;
+}
+
+.admin-menu-item:hover {
+  color: #4e9c79;
+}
+
+/* =========================
+   오른쪽 아이콘
+========================= */
+
+.blen-header-icons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  flex-shrink: 0;
+  gap: 9px;
+}
+
+/* =========================
+   사이드 메뉴 배경
+========================= */
+
+.blen-side-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2998;
+
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* =========================
+   왼쪽 사이드 메뉴
+========================= */
+
+.blen-side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2999;
+
+  width: 270px;
+  max-width: 82%;
+  height: 100vh;
+  height: 100dvh;
+
+  padding: 20px;
+  overflow-y: auto;
+
+  background: #ffffff;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.blen-side-menu.open {
+  transform: translateX(0);
+}
+
+.blen-side-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 18px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.blen-side-logo {
+  padding: 0;
+
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 2px;
+}
+
+.blen-side-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+  padding: 0;
+
+  font-size: 29px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.blen-side-menu-list {
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+}
+
+.blen-side-menu-item {
+  width: 100%;
+  padding: 14px 10px;
+
+  border-bottom: 1px solid #f2f2f2;
+
+  text-align: left;
+  font-size: 15px;
+  font-weight: 500;
+
+  transition: background 0.2s ease;
+}
+
+.blen-side-menu-item:hover {
+  background: #f7f7f7;
+}
+
+/* =========================
+   상품 상세
+========================= */
+
 .product-detail {
   display: flex;
-  gap: 60px;
-  max-width: 1100px;
-  margin: 120px auto;
-  padding: 20px;
   align-items: flex-start;
+  gap: 60px;
+
+  width: 100%;
+  max-width: 1100px;
+  margin: 70px auto;
+  padding: 20px;
 }
 
 .product-image {
   flex: 1;
+  min-width: 0;
 }
 
 .product-image img {
   width: 100%;
   max-width: 500px;
+  height: auto;
   object-fit: cover;
 }
 
 .product-info {
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 20px;
+  min-width: 0;
 }
 
 .product-info h2 {
@@ -119,10 +365,13 @@ body {
 
 .price {
   font-size: 18px;
-  color: #333;
+  color: #333333;
 }
 
-/* 옵션 */
+/* =========================
+   상품 옵션
+========================= */
+
 .option-box {
   display: flex;
   flex-direction: column;
@@ -130,27 +379,37 @@ body {
 }
 
 .option-box label {
+  color: #777777;
   font-size: 12px;
-  color: #777;
   letter-spacing: 2px;
 }
 
 select {
+  width: 100%;
   padding: 12px;
-  border: 1px solid #ddd;
+
+  border: 1px solid #dddddd;
   outline: none;
+  background: #ffffff;
 }
 
-/* 버튼 */
+/* =========================
+   장바구니 버튼
+========================= */
+
 .cart-button {
+  width: 100%;
   margin-top: 20px;
   padding: 16px;
-  background: black;
-  color: white;
+
   border: none;
+  background: #000000;
+  color: #ffffff;
+
   cursor: pointer;
   letter-spacing: 2px;
-  transition: 0.3s;
+
+  transition: opacity 0.3s ease;
 }
 
 .cart-button:hover {
@@ -158,96 +417,33 @@ select {
 }
 
 /* =========================
-   MOBILE
+   상품 목록
 ========================= */
-@media (max-width: 768px) {
-  .product-detail {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .product-image img {
-    max-width: 100%;
-  }
-
-  .menu {
-    gap: 20px;
-  }
-}
-
-/* =========================
-   ANIMATIONS
-========================= */
-@keyframes flowDown {
-  0% { transform: translateY(-60px); }
-  50% { transform: translateY(60px); }
-  100% { transform: translateY(-60px); }
-}
-
-@keyframes scrollArrow {
-  0% { transform: translateY(0) scale(1); opacity: 1; }
-  50% { transform: translateY(12px) scale(0.95); opacity: 0.4; }
-  100% { transform: translateY(0) scale(1); opacity: 1; }
-}
-
-html, body {
-  width: 100%;
-  height: auto;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-/* App.css */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body { font-family: 'Pretendard', sans-serif; overflow-x: hidden; }
-
-/* 모바일 우선 스타일 (스마트폰) */
-.container { width: 100%; padding: 0 15px; margin: 0 auto; }
-
-/* 태블릿 이상 (768px 이상) */
-@media (min-width: 768px) {
-  .container { max-width: 750px; }
-}
-
-/* PC 화면 (1024px 이상) */
-@media (min-width: 1024px) {
-  .container { max-width: 960px; }
-}
 
 .item-layout {
-  width: 300px;
-  border: 1px solid #ddd;
-}
-.responsive-img {
-  width: 100%;       /* 레이아웃 너비에 꽉 차게 */
-  height: 200px;     /* 고정 높이 */
-  object-fit: cover; /* 이미지가 찌그러지지 않게 잘라내기 */
+  width: 100%;
+  max-width: 300px;
+  border: 1px solid #dddddd;
 }
 
-/* BLEN 상품 목록: PC에서 4개를 한 줄로 표시 */
+.responsive-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* PC에서는 상품 4개 */
 .blen-product-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
+
   width: 100%;
 }
 
-/* 태블릿 */
-@media screen and (max-width: 900px) {
-  .blen-product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-  }
-}
-
-/* 모바일 */
-@media screen and (max-width: 520px) {
-  .blen-product-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-}
+/* =========================
+   애니메이션
+========================= */
 
 @keyframes flowDown {
   0% {
@@ -263,9 +459,260 @@ body { font-family: 'Pretendard', sans-serif; overflow-x: hidden; }
   0%,
   100% {
     transform: translateY(0);
+    opacity: 1;
   }
 
   50% {
     transform: translateY(8px);
+    opacity: 0.45;
+  }
+}
+
+/* =========================
+   태블릿
+========================= */
+
+@media screen and (max-width: 950px) {
+  .blen-header-inner {
+    padding: 0 14px;
+    gap: 13px;
+  }
+
+  .blen-main-menu {
+    gap: 12px;
+  }
+
+  .blen-main-menu-item {
+    font-size: 12px;
+  }
+
+  .blen-header-icons {
+    gap: 4px;
+  }
+
+  .blen-icon-button {
+    width: 27px;
+    font-size: 15px;
+  }
+
+  .blen-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+/* =========================
+   스마트폰
+========================= */
+
+@media screen and (max-width: 768px) {
+  /*
+    스마트폰에서는 헤더를 2줄로 표시합니다.
+
+    첫째 줄:
+    햄버거 / BLEN / 검색·하트·로그인·장바구니
+
+    둘째 줄:
+    베스트 / 신상품 / 상의 / 하의 / Q/A / FAQ / 관리자
+  */
+
+  .blen-header {
+    height: 96px;
+  }
+
+  .blen-header-space {
+    height: 96px;
+  }
+
+  .blen-header-inner {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    grid-template-rows: 54px 42px;
+
+    width: 100%;
+    padding: 0 7px;
+    gap: 0;
+  }
+
+  /* 햄버거 */
+  .blen-menu-button {
+    grid-column: 1;
+    grid-row: 1;
+
+    width: 28px;
+    height: 38px;
+
+    font-size: 19px;
+  }
+
+  /* 가운데 로고 */
+  .blen-logo {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: center;
+
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+
+  /* 오른쪽 아이콘 */
+  .blen-header-icons {
+    grid-column: 3;
+    grid-row: 1;
+
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .blen-header-icons .blen-icon-button {
+    display: flex;
+
+    width: 25px;
+    height: 36px;
+    padding: 2px;
+
+    font-size: 13px;
+  }
+
+  /* 두 번째 줄 전체 메뉴 */
+  .blen-main-menu {
+    grid-column: 1 / 4;
+    grid-row: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    min-width: 0;
+    gap: 0;
+
+    overflow: hidden;
+    border-top: 1px solid #f2f2f2;
+  }
+
+  .blen-main-menu-item {
+    flex: 1 1 0;
+    min-width: 0;
+
+    padding: 12px 0;
+
+    font-size: 10px;
+    letter-spacing: -0.5px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* 상품 상세 세로 정렬 */
+  .product-detail {
+    flex-direction: column;
+    gap: 30px;
+
+    margin: 35px auto;
+    padding: 15px;
+  }
+
+  .product-image {
+    width: 100%;
+  }
+
+  .product-image img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .product-info {
+    width: 100%;
+  }
+
+  .product-info h2 {
+    font-size: 23px;
+  }
+}
+
+/* =========================
+   작은 스마트폰
+========================= */
+
+@media screen and (max-width: 520px) {
+  .blen-product-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .item-layout {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .blen-header-inner {
+    grid-template-columns: 27px minmax(0, 1fr) auto;
+    padding: 0 4px;
+  }
+
+  .blen-logo {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  .blen-menu-button {
+    width: 24px;
+    font-size: 18px;
+  }
+
+  .blen-header-icons {
+    gap: 0;
+  }
+
+  .blen-header-icons .blen-icon-button {
+    display: flex;
+
+    width: 22px;
+    height: 34px;
+    padding: 1px;
+
+    font-size: 12px;
+  }
+
+  .blen-main-menu-item {
+    padding: 11px 0;
+
+    font-size: 9px;
+    letter-spacing: -0.8px;
+  }
+}
+
+/* =========================
+   매우 작은 스마트폰
+========================= */
+
+@media screen and (max-width: 360px) {
+  .blen-header-inner {
+    grid-template-columns: 24px minmax(0, 1fr) auto;
+    padding: 0 3px;
+  }
+
+  .blen-logo {
+    font-size: 17px;
+    letter-spacing: 0.5px;
+  }
+
+  .blen-menu-button {
+    width: 22px;
+    font-size: 17px;
+  }
+
+  .blen-header-icons .blen-icon-button {
+    width: 20px;
+    font-size: 11px;
+  }
+
+  .blen-main-menu-item {
+    font-size: 8px;
+    letter-spacing: -1px;
   }
 }

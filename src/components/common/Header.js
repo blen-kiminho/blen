@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaBars } from "react-icons/fa";
+import {
+  FaBars,
+  FaSearch,
+  FaHeart,
+  FaUser,
+  FaShoppingBag,
+} from "react-icons/fa";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -11,7 +17,7 @@ export default function Header() {
     "신상품",
     "상의",
     "하의",
-    "상품문의Q/A",
+    "Q/A",
     "FAQ",
     "관리자",
   ];
@@ -19,13 +25,21 @@ export default function Header() {
   const handleMenuClick = (item) => {
     setMenuOpen(false);
 
-    // 관리자 페이지 이동
     if (item === "관리자") {
       navigate("/admin");
       return;
     }
 
-    // 상품 카테고리 주소 설정
+    if (item === "Q/A") {
+      navigate("/qna");
+      return;
+    }
+
+    if (item === "FAQ") {
+      navigate("/faq");
+      return;
+    }
+
     const categoryMap = {
       베스트: "BEST",
       신상품: "NEW",
@@ -33,205 +47,139 @@ export default function Header() {
       하의: "BOTTOM",
     };
 
-    // 카테고리 페이지 이동
     if (categoryMap[item]) {
       navigate(`/category/${categoryMap[item]}`);
-      return;
     }
+  };
 
-    // 상품문의 페이지 이동
-    if (item === "상품문의Q/A") {
-      navigate("/qna");
-      return;
-    }
-
-    // FAQ 페이지 이동
-    if (item === "FAQ") {
-      navigate("/faq");
-    }
+  const handleLogoClick = () => {
+    setMenuOpen(false);
+    navigate("/");
   };
 
   return (
     <>
-      {/* 고정 헤더 */}
-      <header
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 1000,
-          height: "72px",
-          display: "flex",
-          alignItems: "center",
-          padding: "0 30px",
-          background: "rgba(255,255,255,0.95)",
-          backdropFilter: "blur(10px)",
-          borderBottom: "1px solid #eee",
-          boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
-          boxSizing: "border-box",
-        }}
-      >
-        {/* 햄버거, 로고, 메뉴를 왼쪽부터 배치 */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "28px",
-            width: "100%",
-          }}
-        >
-          {/* 햄버거 버튼 */}
-          <FaBars
+      <header className="blen-header">
+        <div className="blen-header-inner">
+          {/* 왼쪽 햄버거 */}
+          <button
+            type="button"
+            className="blen-icon-button blen-menu-button"
             onClick={() => setMenuOpen(true)}
-            style={{
-              fontSize: "22px",
-              cursor: "pointer",
-              color: "#333",
-              flexShrink: 0,
-            }}
-          />
+            aria-label="메뉴 열기"
+          >
+            <FaBars />
+          </button>
 
-          {/* BLEN 로고 */}
-          <div
-            onClick={() => navigate("/")}
-            style={{
-              fontSize: "24px",
-              fontWeight: "700",
-              cursor: "pointer",
-              color: "#111",
-              letterSpacing: "1px",
-              flexShrink: 0,
-            }}
+          {/* 로고 */}
+          <button
+            type="button"
+            className="blen-logo"
+            onClick={handleLogoClick}
           >
             BLEN
-          </div>
+          </button>
 
-          {/* 상단 메뉴 */}
-          <nav
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-start",
-              gap: "24px",
-              whiteSpace: "nowrap",
-              overflowX: "auto",
-              scrollbarWidth: "none",
-            }}
-          >
+          {/* 가운데 메뉴 */}
+          <nav className="blen-main-menu">
             {menuItems.map((item) => (
-              <div
+              <button
+                type="button"
                 key={item}
+                className={`blen-main-menu-item ${
+                  item === "관리자" ? "admin-menu-item" : ""
+                }`}
                 onClick={() => handleMenuClick(item)}
-                style={{
-                  cursor: "pointer",
-                  fontSize: "14px",
-                  fontWeight: item === "관리자" ? "700" : "500",
-                  color: item === "관리자" ? "#6BAF92" : "#333",
-                  transition: "color 0.2s",
-                  flexShrink: 0,
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color =
-                    item === "관리자" ? "#4E9C79" : "#000";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color =
-                    item === "관리자" ? "#6BAF92" : "#333";
-                }}
               >
                 {item}
-              </div>
+              </button>
             ))}
           </nav>
+
+          {/* 오른쪽 아이콘 */}
+          <div className="blen-header-icons">
+            <button
+              type="button"
+              className="blen-icon-button"
+              aria-label="검색"
+            >
+              <FaSearch />
+            </button>
+
+            <button
+              type="button"
+              className="blen-icon-button"
+              aria-label="찜한 상품"
+            >
+              <FaHeart />
+            </button>
+
+            <button
+              type="button"
+              className="blen-icon-button"
+              aria-label="로그인"
+            >
+              <FaUser />
+            </button>
+
+            <button
+              type="button"
+              className="blen-icon-button"
+              aria-label="장바구니"
+            >
+              <FaShoppingBag />
+            </button>
+          </div>
         </div>
       </header>
 
-      {/*
-        fixed 헤더는 일반 화면 영역을 차지하지 않기 때문에
-        아래 여백을 넣어야 본문이 헤더 밑에 가려지지 않습니다.
-      */}
-      <div style={{ height: "72px" }} />
+      {/* 고정 헤더가 본문을 가리지 않도록 하는 공간 */}
+      <div className="blen-header-space" />
 
-      {/* 어두운 배경 */}
+      {/* 사이드 메뉴 배경 */}
       {menuOpen && (
         <div
+          className="blen-side-overlay"
           onClick={() => setMenuOpen(false)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.35)",
-            zIndex: 2998,
-          }}
         />
       )}
 
       {/* 왼쪽 사이드 메뉴 */}
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "260px",
-          height: "100vh",
-          background: "#fff",
-          zIndex: 2999,
-          padding: "70px 20px",
-          boxSizing: "border-box",
-          boxShadow: "4px 0 20px rgba(0,0,0,0.08)",
-          transform: menuOpen
-            ? "translateX(0)"
-            : "translateX(-100%)",
-          transition: "transform 0.3s ease",
-        }}
-      >
-        {/* 사이드 메뉴 닫기 버튼 */}
-        <div
-          onClick={() => setMenuOpen(false)}
-          style={{
-            position: "absolute",
-            top: "20px",
-            right: "20px",
-            fontSize: "20px",
-            cursor: "pointer",
-          }}
-        >
-          ✕
+      <aside className={`blen-side-menu ${menuOpen ? "open" : ""}`}>
+        <div className="blen-side-header">
+          <button
+            type="button"
+            className="blen-side-logo"
+            onClick={handleLogoClick}
+          >
+            BLEN
+          </button>
+
+          <button
+            type="button"
+            className="blen-side-close"
+            onClick={() => setMenuOpen(false)}
+            aria-label="메뉴 닫기"
+          >
+            ×
+          </button>
         </div>
 
-        {/* 사이드 메뉴 목록 */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-          }}
-        >
+        <div className="blen-side-menu-list">
           {menuItems.map((item) => (
-            <div
+            <button
+              type="button"
               key={item}
+              className={`blen-side-menu-item ${
+                item === "관리자" ? "admin-menu-item" : ""
+              }`}
               onClick={() => handleMenuClick(item)}
-              style={{
-                padding: "14px 16px",
-                borderRadius: "12px",
-                cursor: "pointer",
-                fontSize: "15px",
-                fontWeight: item === "관리자" ? "700" : "500",
-                color: item === "관리자" ? "#6BAF92" : "#333",
-                transition: "background 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#f7f7f7";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "transparent";
-              }}
             >
               {item}
-            </div>
+            </button>
           ))}
         </div>
-      </div>
+      </aside>
     </>
   );
 }
