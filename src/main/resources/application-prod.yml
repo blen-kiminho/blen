@@ -1,7 +1,14 @@
 spring:
+  profiles:
+    active: prod
+
   main:
     allow-bean-definition-overriding: true
     banner-mode: "off"
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
 
   servlet:
     multipart:
@@ -9,25 +16,21 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
 
-  # 1. Spring Security 자동 구성 엔진 단계에서 완전히 끄기 (CORS 및 접근 통제 해제)
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
-
   datasource:
-    url: jdbc:mariadb://kodama.proxy.rlwy.net:10629/railway
-    username: root
-    password: SprrdToyEpPnjTITlVhRHWerNFTpCvOB
-    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:5432/postgres?sslmode=require
+    username: blendb
+    password: Park-1743***
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
       ddl-auto: update
       naming:
-        # 엔티티에 적힌created_at, writer 변수명 그대로 DB와 매핑하는 규칙
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
 
 logging:
@@ -38,7 +41,6 @@ logging:
           jdbc:
             bind: trace
 
-# Cloudtype 구동 포트 활성화 설정
 server:
   address: 0.0.0.0
   port: ${PORT:8080}
