@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
-const API = "https://port-0-activecable-mpttw6di3d47490d.sel3.cloudtype.app";
+const API = "https://port-0-blen-mpttw6di3d47490d.sel3.cloudtype.app";
 
 export default function QnaDetailPage() {
   const { id } = useParams();

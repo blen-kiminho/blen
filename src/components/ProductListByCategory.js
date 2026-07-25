@@ -5,7 +5,7 @@ import axios from "axios";
 export default function ProductListByCategory({ category }) {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
-  const serverUrl = "https://port-0-activecable-mpttw6di3d47490d.sel3.cloudtype.app"; 
+  const serverUrl = "https://port-0-blen-mpttw6di3d47490d.sel3.cloudtype.app"; 
 
   useEffect(() => {
     const fetchItems = async () => {

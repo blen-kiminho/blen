@@ -25,7 +25,7 @@ const AdminImageUploader = ({ itemId }) => {
       setUploading(true);
 
       // 💡 팁: 클라우드타입 대시보드에서 '접속하기(Connect)'를 눌러 나오는 최신 URL과 일치하는지 꼭 확인하세요!
-      const BASE_URL = "https://port-0-activecable-mpttw6di3d47490d.sel3.cloudtype.app";
+      const BASE_URL = "https://port-0-blen-mpttw6di3d47490d.sel3.cloudtype.app";
 
       const response = await axios.post(
         `${BASE_URL}/api/items/image`,

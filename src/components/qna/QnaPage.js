@@ -12,7 +12,7 @@ export default function QnaList() {
     const loadData = async () => {
       try {
         const res = await axios.get(
-          "https://port-0-activecable-mpttw6di3d47490d.sel3.cloudtype.app/api/qna/list"
+          "https://port-0-blen-mpttw6di3d47490d.sel3.cloudtype.app/api/qna/list"
         );
         
         console.log("백엔드 수신 데이터:", res.data);

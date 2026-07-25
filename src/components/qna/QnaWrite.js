@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 // 1. Base API 주소
-const API = "https://port-0-activecable-mpttw6di3d47490d.sel3.cloudtype.app";
+const API = "https://port-0-blen-mpttw6di3d47490d.sel3.cloudtype.app";
 
 export default function QnaWrite() {
   const navigate = useNavigate();

@@ -676,3 +676,771 @@ select {
     letter-spacing: -1px;
   }
 }
+
+/* ================================
+   BLEN MAIN PAGE
+================================ */
+
+.blen-main-page {
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  color: #111;
+}
+
+/* =========================================
+   BLEN MAIN PAGE
+========================================= */
+
+.blen-main-page {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #ffffff;
+  color: #111111;
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.blen-home-hero {
+  width: 100%;
+  padding: 34px 28px 0;
+  background: #ffffff;
+}
+
+.blen-home-hero-inner {
+  position: relative;
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+  overflow: hidden;
+  background: #f3f3f3;
+}
+
+.blen-home-hero-image {
+  width: 100%;
+  height: auto;
+  min-height: 580px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.blen-home-hero-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.04);
+  pointer-events: none;
+}
+
+.blen-home-hero-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: min(520px, 76%);
+  padding: 34px 28px;
+
+  transform: translate(-50%, -50%);
+
+  background: rgba(255, 255, 255, 0.88);
+  text-align: center;
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.blen-home-hero-season {
+  margin: 0 0 13px;
+  color: #777777;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 5px;
+}
+
+.blen-home-hero-overlay h1 {
+  margin: 0;
+  padding-left: 14px;
+
+  color: #111111;
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 14px;
+}
+
+.blen-home-hero-slogan {
+  margin: 15px 0 25px;
+  color: #555555;
+  font-size: 11px;
+  letter-spacing: 5px;
+}
+
+.blen-home-lookbook-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+
+  min-width: 220px;
+  padding: 15px 23px;
+
+  border: 1px solid #111111;
+  background: #111111;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.blen-home-lookbook-button:hover {
+  background: #ffffff;
+  color: #111111;
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   공통 작은 제목
+========================================= */
+
+.blen-home-section-label {
+  margin: 0 0 15px;
+  color: #8a8a8a;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 5px;
+}
+
+/* =========================================
+   BRAND STORY
+========================================= */
+
+.blen-home-story {
+  width: 100%;
+  padding: 130px 24px 125px;
+  background: #ffffff;
+}
+
+.blen-home-story-inner {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.blen-home-story h2 {
+  margin: 0;
+
+  color: #111111;
+  font-size: clamp(42px, 5.8vw, 72px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 5px;
+}
+
+.blen-home-story-line {
+  width: 42px;
+  height: 1px;
+  margin: 35px auto;
+  background: #222222;
+}
+
+.blen-home-story-description {
+  margin: 0 auto;
+  color: #5f5f5f;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 2.05;
+  word-break: keep-all;
+}
+
+.blen-home-story-signature {
+  margin: 35px 0 0;
+  color: #999999;
+  font-size: 9px;
+  letter-spacing: 5px;
+}
+
+/* =========================================
+   BEST PRODUCT SECTION
+========================================= */
+
+.blen-home-products {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 28px 130px;
+}
+
+.blen-home-product-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.blen-home-product-heading h2 {
+  margin: 0;
+  color: #111111;
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+
+/*
+ ProductList.js 자체에 바깥 margin이 큰 경우
+ 아래 CSS가 간격을 정리합니다.
+*/
+
+.blen-home-products > section {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ProductList가 div를 루트로 사용하는 경우 */
+
+.blen-home-products > div {
+  width: 100%;
+}
+
+/* =========================================
+   NEW COLLECTION — 낮은 배너
+========================================= */
+
+.blen-home-new-banner {
+  position: relative;
+  width: 100%;
+  min-height: 230px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 45px 7%;
+  overflow: hidden;
+
+  background: #111111;
+  color: #ffffff;
+}
+
+.blen-home-new-background {
+  position: absolute;
+  top: 50%;
+  left: -2%;
+
+  transform: translateY(-50%);
+
+  color: rgba(255, 255, 255, 0.035);
+  white-space: nowrap;
+
+  font-size: clamp(75px, 11vw, 165px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 18px;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+.blen-home-new-content {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.blen-home-new-text p {
+  margin: 0 0 10px;
+  color: #a9a9a9;
+  font-size: 9px;
+  letter-spacing: 5px;
+}
+
+.blen-home-new-text h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(27px, 4vw, 48px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 5px;
+}
+
+.blen-home-new-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  flex-shrink: 0;
+
+  min-width: 215px;
+  padding: 14px 21px;
+
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: transparent;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 2px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.blen-home-new-button:hover {
+  background: #ffffff;
+  color: #111111;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media screen and (max-width: 900px) {
+  .blen-home-hero {
+    padding: 25px 18px 0;
+  }
+
+  .blen-home-hero-image {
+    min-height: 530px;
+  }
+
+  .blen-home-hero-overlay {
+    width: 70%;
+    padding: 29px 20px;
+  }
+
+  .blen-home-hero-overlay h1 {
+    font-size: 56px;
+    letter-spacing: 11px;
+  }
+
+  .blen-home-story {
+    padding: 105px 22px;
+  }
+
+  .blen-home-products {
+    padding: 0 18px 105px;
+  }
+
+  .blen-home-new-banner {
+    min-height: 220px;
+    padding: 40px 6%;
+  }
+
+  .blen-home-new-content {
+    gap: 30px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media screen and (max-width: 600px) {
+  .blen-home-hero {
+    padding: 10px 10px 0;
+  }
+
+  .blen-home-hero-image {
+    min-height: 460px;
+    object-fit: cover;
+  }
+
+  .blen-home-hero-overlay {
+    width: 82%;
+    padding: 22px 14px;
+  }
+
+  .blen-home-hero-season {
+    margin-bottom: 10px;
+    font-size: 7px;
+    letter-spacing: 3px;
+  }
+
+  .blen-home-hero-overlay h1 {
+    padding-left: 8px;
+    font-size: 38px;
+    letter-spacing: 8px;
+  }
+
+  .blen-home-hero-slogan {
+    margin: 11px 0 17px;
+    font-size: 8px;
+    letter-spacing: 3px;
+  }
+
+  .blen-home-lookbook-button {
+    min-width: 175px;
+    padding: 12px 15px;
+    gap: 15px;
+    font-size: 10px;
+  }
+
+  .blen-home-story {
+    padding: 85px 18px;
+  }
+
+  .blen-home-story h2 {
+    font-size: 40px;
+    letter-spacing: 3px;
+  }
+
+  .blen-home-story-line {
+    margin: 28px auto;
+  }
+
+  .blen-home-story-description {
+    font-size: 13px;
+    line-height: 1.95;
+  }
+
+  .blen-desktop-break {
+    display: none;
+  }
+
+  .blen-home-products {
+    padding: 0 12px 85px;
+  }
+
+  .blen-home-product-heading {
+    margin-bottom: 24px;
+  }
+
+  .blen-home-product-heading h2 {
+    font-size: 25px;
+    letter-spacing: 3px;
+  }
+
+  .blen-home-new-banner {
+    min-height: 205px;
+    padding: 34px 22px;
+  }
+
+  .blen-home-new-content {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 23px;
+  }
+
+  .blen-home-new-text h2 {
+    font-size: 27px;
+    line-height: 1.3;
+    letter-spacing: 3px;
+  }
+
+  .blen-home-new-button {
+    min-width: 190px;
+    padding: 13px 18px;
+  }
+
+  .blen-home-new-background {
+    font-size: 92px;
+    letter-spacing: 10px;
+  }
+}
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media screen and (max-width: 380px) {
+  .blen-home-hero-image {
+    min-height: 410px;
+  }
+
+  .blen-home-hero-overlay {
+    width: 85%;
+  }
+
+  .blen-home-hero-overlay h1 {
+    font-size: 34px;
+  }
+
+  .blen-home-story h2 {
+    font-size: 36px;
+  }
+
+  .blen-home-new-text h2 {
+    font-size: 24px;
+  }
+}
+
+.blen-product-message {
+  margin: 25px 0;
+  color: #777;
+  font-size: 13px;
+  text-align: center;
+}
+
+.blen-product-section {
+  width: 100%;
+  max-width: 1280px;
+  margin: 80px auto;
+  padding: 0 28px;
+}
+
+.blen-product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.blen-product-card {
+  min-width: 0;
+  cursor: pointer;
+}
+
+.blen-product-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #f3f3f3;
+}
+
+.blen-product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.blen-product-card:hover .blen-product-image {
+  transform: scale(1.035);
+}
+
+.blen-product-overlay {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 14px;
+  transform: translateY(100%);
+  background: rgba(0, 0, 0, 0.78);
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.blen-product-card:hover .blen-product-overlay {
+  transform: translateY(0);
+}
+
+.blen-product-info {
+  padding-top: 13px;
+}
+
+.blen-product-info h3 {
+  margin: 0 0 7px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.blen-product-info p {
+  margin: 0;
+  color: #777;
+  font-size: 13px;
+}
+
+@media screen and (max-width: 900px) {
+  .blen-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .blen-product-section {
+    margin: 60px auto;
+    padding: 0 12px;
+  }
+
+  .blen-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 10px;
+  }
+
+  .blen-product-info h3 {
+    font-size: 12px;
+  }
+}
+
+.blen-banner-content h2{
+
+    font-size:clamp(22px,3vw,34px);
+
+    margin-bottom:18px;
+
+    letter-spacing:3px;
+
+}
+
+/* =========================
+   PRODUCT SECTION TITLE
+========================= */
+
+.blen-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+
+  margin-bottom: 52px;
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid #ececec;
+}
+
+.blen-section-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.blen-section-label {
+  margin: 0;
+
+  color: #999999;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 5px;
+}
+
+.blen-section-heading h2 {
+  margin: 0;
+
+  color: #111111;
+  font-size: clamp(27px, 3vw, 42px);
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: 5px;
+}
+
+/* =========================
+   VIEW ALL BUTTON
+========================= */
+
+.blen-view-all {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 26px;
+
+  min-width: 150px;
+  padding: 12px 0;
+
+  border: 0;
+  border-bottom: 1px solid #111111;
+  background: transparent;
+  color: #111111;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+
+  cursor: pointer;
+
+  transition:
+    color 0.25s ease,
+    padding 0.25s ease;
+}
+
+.blen-view-all::after {
+  content: "";
+
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+
+  height: 1px;
+
+  background: #111111;
+
+  transform: scaleX(0);
+  transform-origin: right center;
+
+  transition: transform 0.35s ease;
+}
+
+.blen-view-all:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.blen-view-all:hover {
+  color: #666666;
+  padding-left: 5px;
+}
+
+.blen-view-all-arrow {
+  display: inline-block;
+  font-size: 18px;
+  line-height: 1;
+
+  transition: transform 0.3s ease;
+}
+
+.blen-view-all:hover .blen-view-all-arrow {
+  transform: translateX(6px);
+}
+
+/* =========================
+   NEW COLLECTION
+========================= */
+
+.blen-home-new-banner{
+    position:relative;
+
+    width:100%;
+    max-width:1280px;
+
+    margin:100px auto 90px;   /* 위/아래 여백 */
+
+    min-height:85px;          /* 기존보다 훨씬 작게 */
+
+    padding:20px 35px;
+
+    overflow:hidden;
+
+    background:#111;
+    color:#fff;
+
+    border-radius:6px;
+}

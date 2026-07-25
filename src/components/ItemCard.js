@@ -2,7 +2,7 @@ import React from 'react';
 
 const ItemCard = ({ item }) => {
   // 백엔드 서버 주소
-  const serverUrl = 'https://port-0-activecable-mpttw6di3d47490d.sel3.cloudtype.app';
+  const serverUrl = 'https://port-0-blen-mpttw6di3d47490d.sel3.cloudtype.app';
 
   // 1. 데이터가 아예 없는 경우 방어 코드
   if (!item) {

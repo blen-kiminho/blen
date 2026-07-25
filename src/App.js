@@ -19,6 +19,8 @@ import FAQPage from "./FAQPage";
 import QnaPage from "./components/qna/QnaPage";
 import QnaWrite from "./components/qna/QnaWrite";
 import QnaDetailPage from "./components/qna/QnaDetailPage";
+import AdminProductForm from "./pages/AdminProductForm";
+import LookbookPage from "./pages/LookbookPage";
 
 const router = createHashRouter([
   {
@@ -91,7 +93,7 @@ const router = createHashRouter([
       },
       {
         path: "lookbook",
-        element: <div>룩북</div>,
+        element: <LookbookPage />,
       },
       {
         path: "brand",
