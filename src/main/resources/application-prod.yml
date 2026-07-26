@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:5432/postgres?sslmode=require
-    username: blendb
-    password: 실제비밀번호
+    username: postgres.vqddxabipxzywakjuddz
+    password: Park-1743***
     driver-class-name: org.postgresql.Driver
 
   jpa:
