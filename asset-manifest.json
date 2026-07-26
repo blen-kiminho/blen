@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/blen/static/css/main.db074602.css",
-    "main.js": "/blen/static/js/main.0d4f1ffa.js",
+    "main.js": "/blen/static/js/main.fb72ee79.js",
     "static/js/453.c227cfa4.chunk.js": "/blen/static/js/453.c227cfa4.chunk.js",
     "index.html": "/blen/index.html",
     "main.db074602.css.map": "/blen/static/css/main.db074602.css.map",
-    "main.0d4f1ffa.js.map": "/blen/static/js/main.0d4f1ffa.js.map",
+    "main.fb72ee79.js.map": "/blen/static/js/main.fb72ee79.js.map",
     "453.c227cfa4.chunk.js.map": "/blen/static/js/453.c227cfa4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.db074602.css",
-    "static/js/main.0d4f1ffa.js"
+    "static/js/main.fb72ee79.js"
   ]
 }
