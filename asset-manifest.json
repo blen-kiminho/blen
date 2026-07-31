@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/blen/static/css/main.600fccc5.css",
-    "main.js": "/blen/static/js/main.39501214.js",
-    "static/js/453.c227cfa4.chunk.js": "/blen/static/js/453.c227cfa4.chunk.js",
-    "index.html": "/blen/index.html",
-    "main.600fccc5.css.map": "/blen/static/css/main.600fccc5.css.map",
-    "main.39501214.js.map": "/blen/static/js/main.39501214.js.map",
-    "453.c227cfa4.chunk.js.map": "/blen/static/js/453.c227cfa4.chunk.js.map"
+    "main.css": "/activecable/static/css/main.600fccc5.css",
+    "main.js": "/activecable/static/js/main.a7a4bf8e.js",
+    "static/js/453.c227cfa4.chunk.js": "/activecable/static/js/453.c227cfa4.chunk.js",
+    "index.html": "/activecable/index.html",
+    "main.600fccc5.css.map": "/activecable/static/css/main.600fccc5.css.map",
+    "main.a7a4bf8e.js.map": "/activecable/static/js/main.a7a4bf8e.js.map",
+    "453.c227cfa4.chunk.js.map": "/activecable/static/js/453.c227cfa4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.600fccc5.css",
-    "static/js/main.39501214.js"
+    "static/js/main.a7a4bf8e.js"
   ]
 }
