@@ -2,35 +2,37 @@ package org.zerock.mallapi.entity;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Table(name = "product", schema = "public")
 @Getter
 @Setter
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pno;
+    private Long id;
 
-    private String pname;
+    @Column(name = "name")
+    private String name;
 
-    private int price;
+    @Column(name = "price")
+    private Integer price;
 
-    private String pdesc;
+    @Column(name = "description")
+    private String description;
 
-    private String uploadFileName;
+    @Column(name = "img")
+    private String image;
 
     @OneToMany(
-    mappedBy = "product",
-    cascade = CascadeType.ALL
+        mappedBy = "product",
+        cascade = CascadeType.ALL
     )
+    @JsonManagedReference
     private List<ProductOption> options;
 }
