@@ -16,7 +16,7 @@ public class CorsConfig {
     CorsConfiguration config = new CorsConfiguration();
 
    config.setAllowedOriginPatterns(Arrays.asList(
-    "https://blen-kiminho.github.io",
+    "https://parkhaemin.github.io",
     "http://localhost:3000"
    ));
 

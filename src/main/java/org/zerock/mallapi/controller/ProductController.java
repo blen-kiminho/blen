@@ -1,36 +1,31 @@
 package org.zerock.mallapi.controller;
 
-import java.util.List;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.zerock.mallapi.entity.Product;
 import org.zerock.mallapi.repository.ProductRepository;
 
-import lombok.RequiredArgsConstructor;
+import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/products")
-@CrossOrigin(origins = "http://localhost:3000")
+@RequiredArgsConstructor
 public class ProductController {
 
     private final ProductRepository productRepository;
 
+    // 전체 상품 조회
     @GetMapping
-    public List<Product> getList() {
-
-        return productRepository.findAll();
+    public ResponseEntity<List<Product>> getProducts() {
+        return ResponseEntity.ok(productRepository.findAll());
     }
 
-    @PostMapping
-    public Product register(
-            @RequestBody Product product) {
-
-        return productRepository.save(product);
+    // 상품 1개 조회
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProduct(@PathVariable Long id) {
+        return productRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
