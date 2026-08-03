@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:5432/postgres?sslmode=require
+    url: jdbc:postgresql://aws-1-ap-northeast-2.pooler.supabase.com:5432/postgres?sslmode=require&options=-c%20client_encoding%3DUTF8
     username: postgres.xbrioxkyjkqovlgqdsjv
     password: Park-1743***
     driver-class-name: org.postgresql.Driver
@@ -19,6 +19,13 @@ spring:
 server:
   address: 0.0.0.0
   port: ${PORT:8080}
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+      force-request: true
+      force-response: true
 
 logging:
   level:

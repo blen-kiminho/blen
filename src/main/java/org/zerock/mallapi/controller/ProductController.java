@@ -9,7 +9,10 @@ import org.zerock.mallapi.repository.ProductRepository;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping(
+    value = "/api/products",
+    produces = "application/json;charset=UTF-8"
+)
 @RequiredArgsConstructor
 public class ProductController {
 
