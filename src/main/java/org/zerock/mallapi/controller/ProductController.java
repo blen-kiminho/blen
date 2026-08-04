@@ -11,8 +11,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping(
-    value = "/api/products",
-    produces = "application/json;charset=UTF-8"
+        value = "/api/products",
+        produces = "application/json;charset=UTF-8"
 )
 @RequiredArgsConstructor
 public class ProductController {
@@ -27,18 +27,24 @@ public class ProductController {
 
     // 상품 1개 조회
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable Long id) {
+    public ResponseEntity<Product> getProduct(
+            @PathVariable Long id
+    ) {
         return productRepository.findById(id)
                 .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+                .orElseGet(() ->
+                        ResponseEntity.notFound().build()
+                );
     }
 
     // 카테고리별 조회
     @GetMapping("/category/{category}")
-    public List<Product> getProductsByCategory(
+    public ResponseEntity<List<Product>> getProductsByCategory(
             @PathVariable String category
     ) {
-        return productRepository.findByCategoryIgnoreCase(category);
+        return ResponseEntity.ok(
+                productRepository.findByCategoryIgnoreCase(category)
+        );
     }
 
     // 상품 등록
@@ -55,12 +61,13 @@ public class ProductController {
             }
         }
 
-        Product savedProduct = productRepository.save(product);
+        Product savedProduct =
+                productRepository.save(product);
 
         return ResponseEntity.ok(savedProduct);
     }
 
-     // 상품 수정
+    // 상품 수정
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(
             @PathVariable Long id,
@@ -70,14 +77,21 @@ public class ProductController {
                 .map(product -> {
                     product.setName(request.getName());
                     product.setPrice(request.getPrice());
-                    product.setDescription(request.getDescription());
+                    product.setDescription(
+                            request.getDescription()
+                    );
                     product.setImage(request.getImage());
-                    product.setCategory(request.getCategory());
+                    product.setCategory(
+                            request.getCategory()
+                    );
 
                     product.getOptions().clear();
 
                     if (request.getOptions() != null) {
-                        for (ProductOption option : request.getOptions()) {
+                        for (
+                            ProductOption option
+                            : request.getOptions()
+                        ) {
                             option.setOno(null);
                             option.setProduct(product);
                             product.getOptions().add(option);
@@ -89,7 +103,9 @@ public class ProductController {
 
                     return ResponseEntity.ok(savedProduct);
                 })
-                .orElse(ResponseEntity.notFound().build());
+                .orElseGet(() ->
+                        ResponseEntity.notFound().build()
+                );
     }
 
     // 상품 삭제
@@ -105,5 +121,4 @@ public class ProductController {
 
         return ResponseEntity.noContent().build();
     }
-
 }
