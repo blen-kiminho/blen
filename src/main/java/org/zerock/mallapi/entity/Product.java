@@ -1,5 +1,6 @@
 package org.zerock.mallapi.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -17,22 +18,26 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private Integer price;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "img")
     private String image;
 
+    @Column(name = "category")
+    private String category;
+
     @OneToMany(
-        mappedBy = "product",
-        cascade = CascadeType.ALL
+            mappedBy = "product",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
     )
     @JsonManagedReference
-    private List<ProductOption> options;
+    private List<ProductOption> options = new ArrayList<>();
 }

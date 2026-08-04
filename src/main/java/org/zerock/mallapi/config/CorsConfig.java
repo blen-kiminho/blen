@@ -16,8 +16,9 @@ public class CorsConfig {
     CorsConfiguration config = new CorsConfiguration();
 
    config.setAllowedOriginPatterns(Arrays.asList(
+    "http://localhost:3000",
     "https://parkhaemin.github.io",
-    "http://localhost:3000"
+    "https://activecable.github.io"
    ));
 
     config.addAllowedMethod("*");
