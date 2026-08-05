@@ -1,9 +1,11 @@
 package org.zerock.mallapi.controller;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
+import java.nio.file.StandardCopyOption;
+import java.util.UUID;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -16,84 +18,206 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.zerock.mallapi.entity.Item;
-import org.zerock.mallapi.service.ItemService;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/items")
 public class ItemController {
 
-    private final ItemService itemService;
-    private final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/";
+    /*
+     * 로컬과 Cloudtype에서 같은 방식으로 사용할 업로드 폴더
+     *
+     * 로컬:
+     * /Users/user/backend/mallapi/uploads/items
+     *
+     * Cloudtype:
+     * /app/uploads/items
+     */
+    private static final Path UPLOAD_DIR =
+            Paths.get(
+                    System.getProperty("user.dir"),
+                    "uploads",
+                    "items"
+            )
+            .toAbsolutePath()
+            .normalize();
 
-    // 1. 업로드 API
-    @PostMapping("/image")
-    public ResponseEntity<?> uploadImage(@RequestParam("file") MultipartFile file, @RequestParam("itemId") Long itemId) throws IOException {
-        return ResponseEntity.ok(itemService.uploadImage(itemId, file));
+    /*
+     * 컨트롤러 작동 확인
+     *
+     * GET /api/items/test
+     */
+    @GetMapping("/test")
+    public ResponseEntity<String> test() {
+        return ResponseEntity.ok(
+                "ItemController 정상 연결"
+        );
     }
 
-    // 2. 이미지 출력 API (중요: 프론트 src=`.../image/파일명` 요청 처리)
-    @GetMapping("/image/{fileName:.+}")
-    public ResponseEntity<Resource> getImage(@PathVariable String fileName) {
+    /*
+     * 이미지 업로드
+     *
+     * POST /api/items/image
+     *
+     * form-data:
+     * file = 이미지 파일
+     */
+    @PostMapping("/image")
+    public ResponseEntity<?> uploadImage(
+            @RequestParam("file") MultipartFile file
+    ) {
         try {
-            Path path = Paths.get(UPLOAD_DIR).resolve(fileName);
-            Resource resource = new UrlResource(path.toUri());
-
-            if (!resource.exists() || !resource.isReadable()) {
-                return ResponseEntity.notFound().build();
+            if (file == null || file.isEmpty()) {
+                return ResponseEntity
+                        .badRequest()
+                        .body("업로드할 이미지가 없습니다.");
             }
-            return ResponseEntity.ok()
-                    .contentType(MediaType.IMAGE_JPEG)
-                    .body(resource);
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
+
+            Files.createDirectories(UPLOAD_DIR);
+
+            String originalName =
+                    file.getOriginalFilename();
+
+            String extension = "";
+
+            if (
+                    originalName != null &&
+                    originalName.contains(".")
+            ) {
+                extension =
+                        originalName.substring(
+                                originalName.lastIndexOf(".")
+                        );
+            }
+
+            String savedName =
+                    UUID.randomUUID() + extension;
+
+            Path targetPath =
+                    UPLOAD_DIR
+                            .resolve(savedName)
+                            .normalize();
+
+            if (!targetPath.startsWith(UPLOAD_DIR)) {
+                return ResponseEntity
+                        .badRequest()
+                        .body("잘못된 파일 경로입니다.");
+            }
+
+            Files.copy(
+                    file.getInputStream(),
+                    targetPath,
+                    StandardCopyOption.REPLACE_EXISTING
+            );
+
+            System.out.println(
+                    "이미지 저장 완료: " + targetPath
+            );
+
+            String imageUrl =
+                    "/api/items/image/" + savedName;
+
+            return ResponseEntity.ok(
+                    new ImageUploadResponse(
+                            savedName,
+                            imageUrl
+                    )
+            );
+
+        } catch (IOException error) {
+            error.printStackTrace();
+
+            return ResponseEntity
+                    .internalServerError()
+                    .body(
+                            "이미지 저장 실패: "
+                            + error.getMessage()
+                    );
         }
     }
-    
-    // 3. 카테고리별 상품 조회 API 추가
-    @GetMapping("/category/{category}")
-    public ResponseEntity<List<Item>> getItemsByCategory(@PathVariable String category) {
-        // itemService에서 카테고리별로 상품을 가져오는 로직을 호출
-        List<Item> items = itemService.getItemsByCategory(category);
-        return ResponseEntity.ok(items);
-    }
 
-    @PostMapping("/new")
-    public ResponseEntity<?> createItem(
-        @RequestParam("file") MultipartFile file,
-        @RequestParam("name") String name,
-        @RequestParam("price") int price,
-        @RequestParam("category") String category,
-        @RequestParam("description") String description) {
-    
-    // 1. 파일 저장 로직은 기존처럼 수행
-   // 2. 빌더 패턴으로 객체 생성
-    Item item = Item.builder()
-            .name(name)
-            .price(price)
-            .category(category)
-            .description(description)
-            .imagePath(file.getOriginalFilename()) // 파일명 저장
-            .build();
-    // 3. 서비스 호출하여 DB 저장
-        return ResponseEntity.ok(itemService.save(item));
-    }
-
-    @PostMapping("/api/items/{itemId}/upload")
-    public ResponseEntity<?> uploadItemImage(
-        @PathVariable("itemId") Long itemId,
-        @RequestParam("image") MultipartFile file) {
+    /*
+     * 이미지 조회
+     *
+     * GET /api/items/image/파일명
+     */
+    @GetMapping("/image/{fileName:.+}")
+    public ResponseEntity<Resource> getImage(
+            @PathVariable("fileName") String fileName
+    ) {
         try {
-        // 서비스단에 itemId와 파일 객체를 함께 넘겨줍니다.
-             itemService.uploadImage(itemId, file);
-             return ResponseEntity.ok().body("이미지 업로드 및 DB 갱신 완료");
-         } catch (Exception e) {
-            return ResponseEntity.status(500).body("이미지 업로드 실패: " + e.getMessage());
-         }
+            Path imagePath =
+                    UPLOAD_DIR
+                            .resolve(fileName)
+                            .normalize();
+
+            System.out.println(
+                    "이미지 조회 요청: " + imagePath
+            );
+
+            /*
+             * ../ 같은 경로 조작 방지
+             */
+            if (!imagePath.startsWith(UPLOAD_DIR)) {
+                return ResponseEntity
+                        .badRequest()
+                        .build();
+            }
+
+            Resource resource =
+                    new UrlResource(
+                            imagePath.toUri()
+                    );
+
+            if (
+                    !resource.exists() ||
+                    !resource.isReadable()
+            ) {
+                System.out.println(
+                        "이미지 파일 없음: " + imagePath
+                );
+
+                return ResponseEntity
+                        .notFound()
+                        .build();
+            }
+
+            String contentType =
+                    Files.probeContentType(imagePath);
+
+            MediaType mediaType;
+
+            if (contentType != null) {
+                try {
+                    mediaType =
+                            MediaType.parseMediaType(
+                                    contentType
+                            );
+                } catch (Exception error) {
+                    mediaType =
+                            MediaType.APPLICATION_OCTET_STREAM;
+                }
+            } else {
+                mediaType =
+                        MediaType.APPLICATION_OCTET_STREAM;
+            }
+
+            return ResponseEntity
+                    .ok()
+                    .contentType(mediaType)
+                    .body(resource);
+
+        } catch (Exception error) {
+            error.printStackTrace();
+
+            return ResponseEntity
+                    .notFound()
+                    .build();
+        }
     }
-}   
+
+    public record ImageUploadResponse(
+            String fileName,
+            String imageUrl
+    ) {
+    }
+}
