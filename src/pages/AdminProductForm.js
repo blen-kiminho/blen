@@ -15,7 +15,7 @@ const AdminProductForm = () => {
   const [loading, setLoading] = useState(false);
   const [createdItemId, setCreatedItemId] = useState(null); // 저장 후 발급받을 itemId
 
-  const BASE_URL = "https://port-0-blen-mpttw6di3d47490d.sel3.cloudtype.app";
+  const BASE_URL = "https://port-0-activecable-mrzowfvhf02b6a71.sel3.cloudtype.app";
 
   // 입력값 변경 핸들러
   const handleInputChange = (e) => {

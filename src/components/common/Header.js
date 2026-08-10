@@ -25,68 +25,57 @@ export default function Header() {
   const handleMenuClick = (item) => {
     setMenuOpen(false);
 
-    if (item === "관리자") {
-      navigate("/admin");
-      return;
-    }
-
-    if (item === "Q/A") {
-      navigate("/qna");
-      return;
-    }
-
-    if (item === "FAQ") {
-      navigate("/faq");
-      return;
-    }
-
-    const categoryMap = {
-      베스트: "BEST",
-      신상품: "NEW",
-      상의: "TOP",
-      하의: "BOTTOM",
+    const pageMap = {
+      관리자: "/admin",
+      "Q/A": "/qna",
+      FAQ: "/faq",
+      베스트: "/category/best",
+      신상품: "/category/new",
+      상의: "/category/top",
+      하의: "/category/bottom",
     };
 
-    if (categoryMap[item]) {
-      navigate(`/category/${categoryMap[item]}`);
+    if (pageMap[item]) {
+      navigate(pageMap[item]);
     }
   };
 
   const handleLogoClick = () => {
     setMenuOpen(false);
     navigate("/");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
     <>
-      <header className="blen-header">
-        <div className="blen-header-inner">
-          {/* 왼쪽 햄버거 */}
+      <header className="cable-header">
+        <div className="cable-header-inner">
           <button
             type="button"
-            className="blen-icon-button blen-menu-button"
+            className="cable-icon-button cable-menu-button"
             onClick={() => setMenuOpen(true)}
             aria-label="메뉴 열기"
           >
             <FaBars />
           </button>
 
-          {/* 로고 */}
           <button
             type="button"
-            className="blen-logo"
+            className="cable-logo"
             onClick={handleLogoClick}
           >
-            BLEN
+            CABLE
           </button>
 
-          {/* 가운데 메뉴 */}
-          <nav className="blen-main-menu">
+          <nav className="cable-main-menu">
             {menuItems.map((item) => (
               <button
                 type="button"
                 key={item}
-                className={`blen-main-menu-item ${
+                className={`cable-main-menu-item ${
                   item === "관리자" ? "admin-menu-item" : ""
                 }`}
                 onClick={() => handleMenuClick(item)}
@@ -96,11 +85,10 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* 오른쪽 아이콘 */}
-          <div className="blen-header-icons">
+          <div className="cable-header-icons">
             <button
               type="button"
-              className="blen-icon-button"
+              className="cable-icon-button"
               aria-label="검색"
             >
               <FaSearch />
@@ -108,7 +96,7 @@ export default function Header() {
 
             <button
               type="button"
-              className="blen-icon-button"
+              className="cable-icon-button"
               aria-label="찜한 상품"
             >
               <FaHeart />
@@ -116,7 +104,7 @@ export default function Header() {
 
             <button
               type="button"
-              className="blen-icon-button"
+              className="cable-icon-button"
               aria-label="로그인"
             >
               <FaUser />
@@ -124,7 +112,7 @@ export default function Header() {
 
             <button
               type="button"
-              className="blen-icon-button"
+              className="cable-icon-button"
               aria-label="장바구니"
             >
               <FaShoppingBag />
@@ -133,31 +121,28 @@ export default function Header() {
         </div>
       </header>
 
-      {/* 고정 헤더가 본문을 가리지 않도록 하는 공간 */}
-      <div className="blen-header-space" />
+      <div className="cable-header-space" />
 
-      {/* 사이드 메뉴 배경 */}
       {menuOpen && (
         <div
-          className="blen-side-overlay"
+          className="cable-side-overlay"
           onClick={() => setMenuOpen(false)}
         />
       )}
 
-      {/* 왼쪽 사이드 메뉴 */}
-      <aside className={`blen-side-menu ${menuOpen ? "open" : ""}`}>
-        <div className="blen-side-header">
+      <aside className={`cable-side-menu ${menuOpen ? "open" : ""}`}>
+        <div className="cable-side-header">
           <button
             type="button"
-            className="blen-side-logo"
+            className="cable-side-logo"
             onClick={handleLogoClick}
           >
-            BLEN
+            CABLE
           </button>
 
           <button
             type="button"
-            className="blen-side-close"
+            className="cable-side-close"
             onClick={() => setMenuOpen(false)}
             aria-label="메뉴 닫기"
           >
@@ -165,12 +150,12 @@ export default function Header() {
           </button>
         </div>
 
-        <div className="blen-side-menu-list">
+        <div className="cable-side-menu-list">
           {menuItems.map((item) => (
             <button
               type="button"
               key={item}
-              className={`blen-side-menu-item ${
+              className={`cable-side-menu-item ${
                 item === "관리자" ? "admin-menu-item" : ""
               }`}
               onClick={() => handleMenuClick(item)}

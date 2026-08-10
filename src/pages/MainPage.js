@@ -11,25 +11,25 @@ const IMG_LOOKBOOK = process.env.PUBLIC_URL + "/lookbook-main.jpg";
 const products = [
   {
     id: 1,
-    name: "BLEN Black Front",
+    name: "CABLE Black Front",
     price: 39000,
     img: IMG_MAIN1,
   },
   {
     id: 2,
-    name: "BLEN White Logo",
+    name: "CABLE White Logo",
     price: 49000,
     img: IMG_MAIN2,
   },
   {
     id: 3,
-    name: "BLEN Back Mood",
+    name: "CABLE Back Mood",
     price: 42000,
     img: IMG_MAIN3,
   },
   {
     id: 4,
-    name: "BLEN Basic",
+    name: "CABLE Basic",
     price: 39000,
     img: IMG_MAIN4,
   },
@@ -57,7 +57,7 @@ function Hero() {
       >
         <img
           src={IMG_LOOKBOOK}
-          alt="BLEN LOOKBOOK"
+          alt="CABLE LOOKBOOK"
           style={{
             width: "100%",
             display: "block",
@@ -91,25 +91,25 @@ function BrandStory() {
   const navigate = useNavigate();
 
   return (
-    <section className="blen-story-section">
-      <div className="blen-story-image">
+    <section className="cable-story-section">
+      <div className="cable-story-image">
         <img
           src={IMG_LOOKBOOK}
-          alt="BLEN 브랜드 이미지"
+          alt="CABLE 브랜드 이미지"
         />
       </div>
 
-      <div className="blen-story-content">
-        <p className="blen-section-label">ABOUT BLEN</p>
+      <div className="cable-story-content">
+        <p className="cable-section-label">ABOUT CABLE</p>
 
         <h2>
-          BLEND IN,
+          CONNECT,
           <br />
           STAND OUT.
         </h2>
 
-        <p className="blen-story-description">
-          BLEN은 ‘Blending’에서 시작된 감성 패션 브랜드입니다.
+        <p className="cable-story-description">
+          CABLE은 연결과 개성에서 시작된 감성 패션 브랜드입니다.
           서로 다른 색과 스타일이 자연스럽게 섞이며 새로운 분위기를
           만드는 순간을 표현합니다.
           <br />
@@ -125,7 +125,7 @@ function BrandStory() {
 
 export default function MainApp() {
   return (
-    <main className="blen-main-page">
+    <main className="cable-main-page">
       <Hero />
       <ProductList />
       <BrandStory />

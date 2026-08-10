@@ -1,21 +1,68 @@
-import AdminImageUploader from "../components/AdminImageUploader";
+import { useNavigate } from "react-router-dom";
 
 const AdminPage = () => {
-  // 예시: 관리할 아이템 목록 (실제로는 API로 받아오세요)
-  const items = [{ id: 1, name: "베스트" }, { id: 2, name: "신상품" },
-     { id: 3, name: "상위" }, { id: 4, name: "하위" }, { id: 5, name: "추천" }];
+  const navigate = useNavigate();
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>관리자 모드</h2>
-      {items.map((item) => (
-        <div key={item.id} style={{ marginBottom: '20px', borderBottom: '1px solid #eee' }}>
-          <h3>{item.name}</h3>
-          {/* 각 아이템마다 업로더 연결 */}
-          <AdminImageUploader itemId={item.id} />
-        </div>
-      ))}
-    </div>
+    <main
+      style={{
+        minHeight: "70vh",
+        padding: "50px 20px",
+        background: "#f7f8f7",
+      }}
+    >
+      <section
+        style={{
+          maxWidth: "900px",
+          margin: "0 auto",
+          background: "#fff",
+          padding: "40px",
+          borderRadius: "20px",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
+        }}
+      >
+        <h1 style={{ marginTop: 0 }}>관리자 모드</h1>
+
+        <p style={{ color: "#666", marginBottom: "30px" }}>
+          상품명, 가격, 카테고리, 설명, 옵션과 이미지를 등록합니다.
+        </p>
+
+        <button
+          type="button"
+          onClick={() => navigate("/admin/product")}
+          style={{
+            padding: "14px 24px",
+            background: "#2a684d",
+            color: "#fff",
+            border: "none",
+            borderRadius: "10px",
+            fontSize: "16px",
+            fontWeight: "700",
+            cursor: "pointer",
+          }}
+        >
+          새 상품 등록
+        </button>
+
+        <button
+          type="button"
+          onClick={() => navigate("/product")}
+          style={{
+            marginLeft: "12px",
+            padding: "14px 24px",
+            background: "#fff",
+            color: "#2a684d",
+            border: "1px solid #2a684d",
+            borderRadius: "10px",
+            fontSize: "16px",
+            fontWeight: "700",
+            cursor: "pointer",
+          }}
+        >
+          등록 상품 확인
+        </button>
+      </section>
+    </main>
   );
 };
 

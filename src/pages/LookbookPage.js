@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 const IMG_LOOKBOOK =
-  process.env.PUBLIC_URL + "/lookbook-main.png";
+  process.env.PUBLIC_URL + "/lookbook-main.jpg";
 
 export default function LookbookPage() {
   const navigate = useNavigate();
@@ -48,14 +48,20 @@ export default function LookbookPage() {
           LOOKBOOK
         </h1>
 
-        <img
-          src={IMG_LOOKBOOK}
-          alt="BLEN LOOKBOOK"
-          style={{
-            width: "100%",
-            display: "block",
-          }}
-        />
+        <div className="cable-lookbook-page-image">
+          <img
+            src={IMG_LOOKBOOK}
+            alt="CABLE LOOKBOOK"
+            style={{
+              width: "100%",
+              display: "block",
+            }}
+          />
+          <div className="cable-lookbook-logo" aria-label="CABLE FASHION BRAND">
+            <strong>CABLE</strong>
+            <span>FASHION BRAND</span>
+          </div>
+        </div>
       </div>
     </main>
   );

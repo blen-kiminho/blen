@@ -71,10 +71,10 @@ img {
 }
 
 /* =========================
-   BLEN HEADER
+   CABLE HEADER
 ========================= */
 
-.blen-header {
+.cable-header {
   position: fixed;
   top: 0;
   left: 0;
@@ -92,7 +92,7 @@ img {
   -webkit-backdrop-filter: blur(10px);
 }
 
-.blen-header-inner {
+.cable-header-inner {
   display: flex;
   align-items: center;
 
@@ -102,7 +102,7 @@ img {
   gap: 22px;
 }
 
-.blen-header-space {
+.cable-header-space {
   width: 100%;
   height: 72px;
 }
@@ -111,12 +111,12 @@ img {
    헤더 버튼 공통
 ========================= */
 
-.blen-icon-button,
-.blen-logo,
-.blen-main-menu-item,
-.blen-side-logo,
-.blen-side-close,
-.blen-side-menu-item {
+.cable-icon-button,
+.cable-logo,
+.cable-main-menu-item,
+.cable-side-logo,
+.cable-side-close,
+.cable-side-menu-item {
   margin: 0;
   padding: 0;
   border: none;
@@ -130,7 +130,7 @@ img {
    햄버거 / 아이콘
 ========================= */
 
-.blen-icon-button {
+.cable-icon-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -144,11 +144,11 @@ img {
   line-height: 1;
 }
 
-.blen-icon-button:hover {
+.cable-icon-button:hover {
   color: #777777;
 }
 
-.blen-menu-button {
+.cable-menu-button {
   font-size: 21px;
 }
 
@@ -156,7 +156,7 @@ img {
    로고
 ========================= */
 
-.blen-logo {
+.cable-logo {
   flex-shrink: 0;
 
   font-size: 24px;
@@ -170,7 +170,7 @@ img {
    상단 메뉴
 ========================= */
 
-.blen-main-menu {
+.cable-main-menu {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -183,7 +183,7 @@ img {
   white-space: nowrap;
 }
 
-.blen-main-menu-item {
+.cable-main-menu-item {
   flex-shrink: 0;
 
   padding: 10px 1px;
@@ -196,7 +196,7 @@ img {
   transition: color 0.2s ease;
 }
 
-.blen-main-menu-item:hover {
+.cable-main-menu-item:hover {
   color: #888888;
 }
 
@@ -213,7 +213,7 @@ img {
    오른쪽 아이콘
 ========================= */
 
-.blen-header-icons {
+.cable-header-icons {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -226,7 +226,7 @@ img {
    사이드 메뉴 배경
 ========================= */
 
-.blen-side-overlay {
+.cable-side-overlay {
   position: fixed;
   inset: 0;
   z-index: 2998;
@@ -238,7 +238,7 @@ img {
    사이드 메뉴
 ========================= */
 
-.blen-side-menu {
+.cable-side-menu {
   position: fixed;
   top: 0;
   left: 0;
@@ -259,11 +259,11 @@ img {
   transition: transform 0.3s ease;
 }
 
-.blen-side-menu.open {
+.cable-side-menu.open {
   transform: translateX(0);
 }
 
-.blen-side-header {
+.cable-side-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -272,13 +272,13 @@ img {
   border-bottom: 1px solid #eeeeee;
 }
 
-.blen-side-logo {
+.cable-side-logo {
   font-size: 23px;
   font-weight: 700;
   letter-spacing: 2px;
 }
 
-.blen-side-close {
+.cable-side-close {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -291,13 +291,13 @@ img {
   line-height: 1;
 }
 
-.blen-side-menu-list {
+.cable-side-menu-list {
   display: flex;
   flex-direction: column;
   padding-top: 16px;
 }
 
-.blen-side-menu-item {
+.cable-side-menu-item {
   width: 100%;
   padding: 14px 10px;
 
@@ -308,7 +308,7 @@ img {
   font-weight: 500;
 }
 
-.blen-side-menu-item:hover {
+.cable-side-menu-item:hover {
   background: #f7f7f7;
 }
 
@@ -411,7 +411,7 @@ select {
   object-fit: cover;
 }
 
-.blen-product-grid {
+.cable-product-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
@@ -450,29 +450,29 @@ select {
 ========================= */
 
 @media screen and (max-width: 950px) {
-  .blen-header-inner {
+  .cable-header-inner {
     padding: 0 14px;
     gap: 13px;
   }
 
-  .blen-main-menu {
+  .cable-main-menu {
     gap: 12px;
   }
 
-  .blen-main-menu-item {
+  .cable-main-menu-item {
     font-size: 12px;
   }
 
-  .blen-header-icons {
+  .cable-header-icons {
     gap: 4px;
   }
 
-  .blen-icon-button {
+  .cable-icon-button {
     width: 27px;
     font-size: 15px;
   }
 
-  .blen-product-grid {
+  .cable-product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
   }
@@ -483,15 +483,15 @@ select {
 ========================= */
 
 @media screen and (max-width: 768px) {
-  .blen-header {
+  .cable-header {
     height: 96px;
   }
 
-  .blen-header-space {
+  .cable-header-space {
     height: 96px;
   }
 
-  .blen-header-inner {
+  .cable-header-inner {
     display: grid;
     grid-template-columns: 32px minmax(0, 1fr) auto;
     grid-template-rows: 54px 42px;
@@ -502,7 +502,7 @@ select {
   }
 
   /* 햄버거 */
-  .blen-menu-button {
+  .cable-menu-button {
     grid-column: 1;
     grid-row: 1;
 
@@ -513,7 +513,7 @@ select {
   }
 
   /* 가운데 로고 */
-  .blen-logo {
+  .cable-logo {
     grid-column: 2;
     grid-row: 1;
     justify-self: center;
@@ -523,7 +523,7 @@ select {
   }
 
   /* 오른쪽 아이콘 */
-  .blen-header-icons {
+  .cable-header-icons {
     grid-column: 3;
     grid-row: 1;
 
@@ -532,7 +532,7 @@ select {
     gap: 0;
   }
 
-  .blen-header-icons .blen-icon-button {
+  .cable-header-icons .cable-icon-button {
     display: flex;
 
     width: 25px;
@@ -543,7 +543,7 @@ select {
   }
 
   /* 두 번째 줄 메뉴 */
-  .blen-main-menu {
+  .cable-main-menu {
     grid-column: 1 / 4;
     grid-row: 2;
 
@@ -559,7 +559,7 @@ select {
     border-top: 1px solid #f2f2f2;
   }
 
-  .blen-main-menu-item {
+  .cable-main-menu-item {
     flex: 1 1 0;
     min-width: 0;
 
@@ -602,7 +602,7 @@ select {
 ========================= */
 
 @media screen and (max-width: 520px) {
-  .blen-product-grid {
+  .cable-product-grid {
     grid-template-columns: 1fr;
     gap: 32px;
   }
@@ -613,33 +613,33 @@ select {
 }
 
 @media screen and (max-width: 430px) {
-  .blen-header-inner {
+  .cable-header-inner {
     grid-template-columns: 27px minmax(0, 1fr) auto;
     padding: 0 4px;
   }
 
-  .blen-logo {
+  .cable-logo {
     font-size: 18px;
     letter-spacing: 1px;
   }
 
-  .blen-menu-button {
+  .cable-menu-button {
     width: 24px;
     font-size: 18px;
   }
 
-  .blen-header-icons {
+  .cable-header-icons {
     gap: 0;
   }
 
-  .blen-header-icons .blen-icon-button {
+  .cable-header-icons .cable-icon-button {
     width: 22px;
     height: 34px;
     padding: 1px;
     font-size: 12px;
   }
 
-  .blen-main-menu-item {
+  .cable-main-menu-item {
     padding: 11px 0;
     font-size: 9px;
     letter-spacing: -0.8px;
@@ -651,37 +651,37 @@ select {
 ========================= */
 
 @media screen and (max-width: 360px) {
-  .blen-header-inner {
+  .cable-header-inner {
     grid-template-columns: 24px minmax(0, 1fr) auto;
     padding: 0 3px;
   }
 
-  .blen-logo {
+  .cable-logo {
     font-size: 17px;
     letter-spacing: 0.5px;
   }
 
-  .blen-menu-button {
+  .cable-menu-button {
     width: 22px;
     font-size: 17px;
   }
 
-  .blen-header-icons .blen-icon-button {
+  .cable-header-icons .cable-icon-button {
     width: 20px;
     font-size: 11px;
   }
 
-  .blen-main-menu-item {
+  .cable-main-menu-item {
     font-size: 8px;
     letter-spacing: -1px;
   }
 }
 
 /* ================================
-   BLEN MAIN PAGE
+   CABLE MAIN PAGE
 ================================ */
 
-.blen-main-page {
+.cable-main-page {
   width: 100%;
   overflow: hidden;
   background: #fff;
@@ -689,10 +689,10 @@ select {
 }
 
 /* =========================================
-   BLEN MAIN PAGE
+   CABLE MAIN PAGE
 ========================================= */
 
-.blen-main-page {
+.cable-main-page {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
@@ -704,13 +704,13 @@ select {
    HERO
 ========================================= */
 
-.blen-home-hero {
+.cable-home-hero {
   width: 100%;
   padding: 34px 28px 0;
   background: #ffffff;
 }
 
-.blen-home-hero-inner {
+.cable-home-hero-inner {
   position: relative;
   width: 100%;
   max-width: 1380px;
@@ -719,7 +719,41 @@ select {
   background: #f3f3f3;
 }
 
-.blen-home-hero-image {
+.cable-lookbook-logo {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: min(52vw, 520px);
+  padding: 13px 30px 11px;
+  color: #ffffff;
+  background: rgba(18, 18, 18, 0.45);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.48);
+  text-align: center;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(4px);
+}
+
+.cable-lookbook-logo strong {
+  font-size: clamp(42px, 8vw, 92px);
+  letter-spacing: 0.2em;
+  line-height: 0.9;
+}
+
+.cable-lookbook-logo span {
+  margin-top: 9px;
+  font-size: clamp(10px, 1.8vw, 18px);
+  letter-spacing: 0.38em;
+}
+
+.cable-lookbook-page-image {
+  position: relative;
+}
+
+.cable-home-hero-image {
   width: 100%;
   height: auto;
   min-height: 580px;
@@ -728,7 +762,7 @@ select {
   object-position: center;
 }
 
-.blen-home-hero-inner::after {
+.cable-home-hero-inner::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -737,7 +771,7 @@ select {
   pointer-events: none;
 }
 
-.blen-home-hero-overlay {
+.cable-home-hero-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -759,7 +793,7 @@ select {
   -webkit-backdrop-filter: blur(6px);
 }
 
-.blen-home-hero-season {
+.cable-home-hero-season {
   margin: 0 0 13px;
   color: #777777;
   font-size: 9px;
@@ -767,7 +801,7 @@ select {
   letter-spacing: 5px;
 }
 
-.blen-home-hero-overlay h1 {
+.cable-home-hero-overlay h1 {
   margin: 0;
   padding-left: 14px;
 
@@ -778,14 +812,14 @@ select {
   letter-spacing: 14px;
 }
 
-.blen-home-hero-slogan {
+.cable-home-hero-slogan {
   margin: 15px 0 25px;
   color: #555555;
   font-size: 11px;
   letter-spacing: 5px;
 }
 
-.blen-home-lookbook-button {
+.cable-home-lookbook-button {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -811,7 +845,7 @@ select {
     transform 0.25s ease;
 }
 
-.blen-home-lookbook-button:hover {
+.cable-home-lookbook-button:hover {
   background: #ffffff;
   color: #111111;
   transform: translateY(-2px);
@@ -821,7 +855,7 @@ select {
    공통 작은 제목
 ========================================= */
 
-.blen-home-section-label {
+.cable-home-section-label {
   margin: 0 0 15px;
   color: #8a8a8a;
   font-size: 10px;
@@ -833,20 +867,20 @@ select {
    BRAND STORY
 ========================================= */
 
-.blen-home-story {
+.cable-home-story {
   width: 100%;
   padding: 130px 24px 125px;
   background: #ffffff;
 }
 
-.blen-home-story-inner {
+.cable-home-story-inner {
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
   text-align: center;
 }
 
-.blen-home-story h2 {
+.cable-home-story h2 {
   margin: 0;
 
   color: #111111;
@@ -856,14 +890,14 @@ select {
   letter-spacing: 5px;
 }
 
-.blen-home-story-line {
+.cable-home-story-line {
   width: 42px;
   height: 1px;
   margin: 35px auto;
   background: #222222;
 }
 
-.blen-home-story-description {
+.cable-home-story-description {
   margin: 0 auto;
   color: #5f5f5f;
   font-size: 14px;
@@ -872,7 +906,7 @@ select {
   word-break: keep-all;
 }
 
-.blen-home-story-signature {
+.cable-home-story-signature {
   margin: 35px 0 0;
   color: #999999;
   font-size: 9px;
@@ -883,21 +917,21 @@ select {
    BEST PRODUCT SECTION
 ========================================= */
 
-.blen-home-products {
+.cable-home-products {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 28px 130px;
 }
 
-.blen-home-product-heading {
+.cable-home-product-heading {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 30px;
 }
 
-.blen-home-product-heading h2 {
+.cable-home-product-heading h2 {
   margin: 0;
   color: #111111;
   font-size: clamp(26px, 3vw, 40px);
@@ -910,7 +944,7 @@ select {
  아래 CSS가 간격을 정리합니다.
 */
 
-.blen-home-products > section {
+.cable-home-products > section {
   width: 100% !important;
   max-width: none !important;
   margin: 0 !important;
@@ -919,7 +953,7 @@ select {
 
 /* ProductList가 div를 루트로 사용하는 경우 */
 
-.blen-home-products > div {
+.cable-home-products > div {
   width: 100%;
 }
 
@@ -927,7 +961,7 @@ select {
    NEW COLLECTION — 낮은 배너
 ========================================= */
 
-.blen-home-new-banner {
+.cable-home-new-banner {
   position: relative;
   width: 100%;
   min-height: 230px;
@@ -942,7 +976,7 @@ select {
   color: #ffffff;
 }
 
-.blen-home-new-background {
+.cable-home-new-background {
   position: absolute;
   top: 50%;
   left: -2%;
@@ -961,7 +995,7 @@ select {
   user-select: none;
 }
 
-.blen-home-new-content {
+.cable-home-new-content {
   position: relative;
   z-index: 2;
 
@@ -975,14 +1009,14 @@ select {
   margin: 0 auto;
 }
 
-.blen-home-new-text p {
+.cable-home-new-text p {
   margin: 0 0 10px;
   color: #a9a9a9;
   font-size: 9px;
   letter-spacing: 5px;
 }
 
-.blen-home-new-text h2 {
+.cable-home-new-text h2 {
   margin: 0;
   color: #ffffff;
   font-size: clamp(27px, 4vw, 48px);
@@ -991,7 +1025,7 @@ select {
   letter-spacing: 5px;
 }
 
-.blen-home-new-button {
+.cable-home-new-button {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -1016,7 +1050,7 @@ select {
     color 0.25s ease;
 }
 
-.blen-home-new-button:hover {
+.cable-home-new-button:hover {
   background: #ffffff;
   color: #111111;
 }
@@ -1026,38 +1060,38 @@ select {
 ========================================= */
 
 @media screen and (max-width: 900px) {
-  .blen-home-hero {
+  .cable-home-hero {
     padding: 25px 18px 0;
   }
 
-  .blen-home-hero-image {
+  .cable-home-hero-image {
     min-height: 530px;
   }
 
-  .blen-home-hero-overlay {
+  .cable-home-hero-overlay {
     width: 70%;
     padding: 29px 20px;
   }
 
-  .blen-home-hero-overlay h1 {
+  .cable-home-hero-overlay h1 {
     font-size: 56px;
     letter-spacing: 11px;
   }
 
-  .blen-home-story {
+  .cable-home-story {
     padding: 105px 22px;
   }
 
-  .blen-home-products {
+  .cable-home-products {
     padding: 0 18px 105px;
   }
 
-  .blen-home-new-banner {
+  .cable-home-new-banner {
     min-height: 220px;
     padding: 40px 6%;
   }
 
-  .blen-home-new-content {
+  .cable-home-new-content {
     gap: 30px;
   }
 }
@@ -1067,104 +1101,104 @@ select {
 ========================================= */
 
 @media screen and (max-width: 600px) {
-  .blen-home-hero {
+  .cable-home-hero {
     padding: 10px 10px 0;
   }
 
-  .blen-home-hero-image {
+  .cable-home-hero-image {
     min-height: 460px;
     object-fit: cover;
   }
 
-  .blen-home-hero-overlay {
+  .cable-home-hero-overlay {
     width: 82%;
     padding: 22px 14px;
   }
 
-  .blen-home-hero-season {
+  .cable-home-hero-season {
     margin-bottom: 10px;
     font-size: 7px;
     letter-spacing: 3px;
   }
 
-  .blen-home-hero-overlay h1 {
+  .cable-home-hero-overlay h1 {
     padding-left: 8px;
     font-size: 38px;
     letter-spacing: 8px;
   }
 
-  .blen-home-hero-slogan {
+  .cable-home-hero-slogan {
     margin: 11px 0 17px;
     font-size: 8px;
     letter-spacing: 3px;
   }
 
-  .blen-home-lookbook-button {
+  .cable-home-lookbook-button {
     min-width: 175px;
     padding: 12px 15px;
     gap: 15px;
     font-size: 10px;
   }
 
-  .blen-home-story {
+  .cable-home-story {
     padding: 85px 18px;
   }
 
-  .blen-home-story h2 {
+  .cable-home-story h2 {
     font-size: 40px;
     letter-spacing: 3px;
   }
 
-  .blen-home-story-line {
+  .cable-home-story-line {
     margin: 28px auto;
   }
 
-  .blen-home-story-description {
+  .cable-home-story-description {
     font-size: 13px;
     line-height: 1.95;
   }
 
-  .blen-desktop-break {
+  .cable-desktop-break {
     display: none;
   }
 
-  .blen-home-products {
+  .cable-home-products {
     padding: 0 12px 85px;
   }
 
-  .blen-home-product-heading {
+  .cable-home-product-heading {
     margin-bottom: 24px;
   }
 
-  .blen-home-product-heading h2 {
+  .cable-home-product-heading h2 {
     font-size: 25px;
     letter-spacing: 3px;
   }
 
-  .blen-home-new-banner {
+  .cable-home-new-banner {
     min-height: 205px;
     padding: 34px 22px;
   }
 
-  .blen-home-new-content {
+  .cable-home-new-content {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     gap: 23px;
   }
 
-  .blen-home-new-text h2 {
+  .cable-home-new-text h2 {
     font-size: 27px;
     line-height: 1.3;
     letter-spacing: 3px;
   }
 
-  .blen-home-new-button {
+  .cable-home-new-button {
     min-width: 190px;
     padding: 13px 18px;
   }
 
-  .blen-home-new-background {
+  .cable-home-new-background {
     font-size: 92px;
     letter-spacing: 10px;
   }
@@ -1175,53 +1209,53 @@ select {
 ========================================= */
 
 @media screen and (max-width: 380px) {
-  .blen-home-hero-image {
+  .cable-home-hero-image {
     min-height: 410px;
   }
 
-  .blen-home-hero-overlay {
+  .cable-home-hero-overlay {
     width: 85%;
   }
 
-  .blen-home-hero-overlay h1 {
+  .cable-home-hero-overlay h1 {
     font-size: 34px;
   }
 
-  .blen-home-story h2 {
+  .cable-home-story h2 {
     font-size: 36px;
   }
 
-  .blen-home-new-text h2 {
+  .cable-home-new-text h2 {
     font-size: 24px;
   }
 }
 
-.blen-product-message {
+.cable-product-message {
   margin: 25px 0;
   color: #777;
   font-size: 13px;
   text-align: center;
 }
 
-.blen-product-section {
+.cable-product-section {
   width: 100%;
   max-width: 1280px;
   margin: 80px auto;
   padding: 0 28px;
 }
 
-.blen-product-grid {
+.cable-product-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 22px;
 }
 
-.blen-product-card {
+.cable-product-card {
   min-width: 0;
   cursor: pointer;
 }
 
-.blen-product-image-wrap {
+.cable-product-image-wrap {
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 4;
@@ -1229,18 +1263,18 @@ select {
   background: #f3f3f3;
 }
 
-.blen-product-image {
+.cable-product-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
 }
 
-.blen-product-card:hover .blen-product-image {
+.cable-product-card:hover .cable-product-image {
   transform: scale(1.035);
 }
 
-.blen-product-overlay {
+.cable-product-overlay {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -1255,49 +1289,49 @@ select {
   transition: transform 0.3s ease;
 }
 
-.blen-product-card:hover .blen-product-overlay {
+.cable-product-card:hover .cable-product-overlay {
   transform: translateY(0);
 }
 
-.blen-product-info {
+.cable-product-info {
   padding-top: 13px;
 }
 
-.blen-product-info h3 {
+.cable-product-info h3 {
   margin: 0 0 7px;
   font-size: 14px;
   font-weight: 500;
 }
 
-.blen-product-info p {
+.cable-product-info p {
   margin: 0;
   color: #777;
   font-size: 13px;
 }
 
 @media screen and (max-width: 900px) {
-  .blen-product-grid {
+  .cable-product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media screen and (max-width: 520px) {
-  .blen-product-section {
+  .cable-product-section {
     margin: 60px auto;
     padding: 0 12px;
   }
 
-  .blen-product-grid {
+  .cable-product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 28px 10px;
   }
 
-  .blen-product-info h3 {
+  .cable-product-info h3 {
     font-size: 12px;
   }
 }
 
-.blen-banner-content h2{
+.cable-banner-content h2{
 
     font-size:clamp(22px,3vw,34px);
 
@@ -1311,7 +1345,7 @@ select {
    PRODUCT SECTION TITLE
 ========================= */
 
-.blen-section-heading {
+.cable-section-heading {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -1323,13 +1357,13 @@ select {
   border-bottom: 1px solid #ececec;
 }
 
-.blen-section-title-group {
+.cable-section-title-group {
   display: flex;
   flex-direction: column;
   gap: 9px;
 }
 
-.blen-section-label {
+.cable-section-label {
   margin: 0;
 
   color: #999999;
@@ -1339,7 +1373,7 @@ select {
   letter-spacing: 5px;
 }
 
-.blen-section-heading h2 {
+.cable-section-heading h2 {
   margin: 0;
 
   color: #111111;
@@ -1353,7 +1387,7 @@ select {
    VIEW ALL BUTTON
 ========================= */
 
-.blen-view-all {
+.cable-view-all {
   position: relative;
 
   display: inline-flex;
@@ -1381,7 +1415,7 @@ select {
     padding 0.25s ease;
 }
 
-.blen-view-all::after {
+.cable-view-all::after {
   content: "";
 
   position: absolute;
@@ -1399,17 +1433,17 @@ select {
   transition: transform 0.35s ease;
 }
 
-.blen-view-all:hover::after {
+.cable-view-all:hover::after {
   transform: scaleX(1);
   transform-origin: left center;
 }
 
-.blen-view-all:hover {
+.cable-view-all:hover {
   color: #666666;
   padding-left: 5px;
 }
 
-.blen-view-all-arrow {
+.cable-view-all-arrow {
   display: inline-block;
   font-size: 18px;
   line-height: 1;
@@ -1417,7 +1451,7 @@ select {
   transition: transform 0.3s ease;
 }
 
-.blen-view-all:hover .blen-view-all-arrow {
+.cable-view-all:hover .cable-view-all-arrow {
   transform: translateX(6px);
 }
 
@@ -1425,7 +1459,7 @@ select {
    NEW COLLECTION
 ========================= */
 
-.blen-home-new-banner{
+.cable-home-new-banner{
     position:relative;
 
     width:100%;
@@ -1444,3 +1478,885 @@ select {
 
     border-radius:6px;
 }
+
+/* 네이버 스마트스토어 이동 섹션 */
+.cable-smartstore-section {
+  width: 100%;
+  padding: 70px 24px;
+  background: #f6f6f2;
+}
+
+.cable-smartstore-inner {
+  width: min(1070px, 100%);
+  min-height: 210px;
+  margin: 0 auto;
+  padding: 42px 50px;
+  border: 1px solid #deded8;
+  background: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.cable-smartstore-text {
+  flex: 1;
+}
+
+.cable-smartstore-label {
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  color: #777;
+}
+
+.cable-smartstore-text h2 {
+  margin: 0;
+  font-size: clamp(25px, 3vw, 38px);
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #111;
+}
+
+.cable-smartstore-description {
+  margin: 18px 0 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #777;
+}
+
+.cable-smartstore-button {
+  min-width: 310px;
+  height: 58px;
+  padding: 0 24px;
+  border: 0;
+  background: #03c75a;
+  color: #ffffff;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  font-size: 14px;
+  font-weight: 700;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.cable-smartstore-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.cable-naver-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #03c75a;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 17px;
+  font-weight: 900;
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .cable-smartstore-section {
+    padding: 45px 18px;
+  }
+
+  .cable-smartstore-inner {
+    min-height: auto;
+    padding: 32px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+  }
+
+  .cable-smartstore-text h2 {
+    font-size: 25px;
+  }
+
+  .cable-smartstore-description br {
+    display: none;
+  }
+
+  .cable-smartstore-button {
+    width: 100%;
+    min-width: 0;
+    height: 56px;
+    padding: 0 16px;
+    font-size: 13px;
+  }
+}
+
+.smartstore-mini{
+
+    width:100%;
+
+    padding:40px 0;
+
+    background:#fff;
+
+}
+
+.smartstore-box{
+
+    width:900px;
+
+    height:90px;
+
+    margin:auto;
+
+    border:1px solid #ddd;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 35px;
+
+}
+
+.smartstore-left span{
+
+    font-size:11px;
+
+    letter-spacing:4px;
+
+    color:#888;
+
+}
+
+.smartstore-left h3{
+
+    margin:5px 0;
+
+    font-size:28px;
+
+}
+
+.smartstore-left p{
+
+    font-size:13px;
+
+    color:#777;
+
+}
+
+.smartstore-box button{
+
+    width:210px;
+
+    height:46px;
+
+    border:none;
+
+    background:#03C75A;
+
+    color:white;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    border-radius:4px;
+
+}
+
+.smartstore-box button:hover{
+
+    opacity:.9;
+
+}
+
+/* =========================================
+   NAVER SMARTSTORE
+========================================= */
+
+.cable-smartstore {
+  width: 100%;
+  padding: 70px 24px;
+  background: #f7f7f5;
+}
+
+.cable-smartstore-card {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+
+  width: 100%;
+  max-width: 1160px;
+  min-height: 170px;
+
+  margin: 0 auto;
+  padding: 42px 48px;
+
+  overflow: hidden;
+
+  border: 1px solid #e4e4df;
+  border-radius: 2px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(3, 199, 90, 0.035),
+      transparent 45%
+    ),
+    #ffffff;
+
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.04);
+}
+
+/* 왼쪽 장식선 */
+.cable-smartstore-card::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 4px;
+  background: #03c75a;
+}
+
+.cable-smartstore-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.cable-smartstore-label {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: #8a8a8a;
+
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.42em;
+}
+
+.cable-smartstore-text h2 {
+  margin: 0;
+
+  color: #111111;
+
+  font-size: clamp(25px, 2.8vw, 37px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+}
+
+.cable-smartstore-text p {
+  margin: 13px 0 0;
+
+  color: #777777;
+
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* 버튼 */
+.cable-smartstore-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  flex-shrink: 0;
+
+  width: 230px;
+  height: 54px;
+
+  padding: 0 25px;
+
+  border: 1px solid #03c75a;
+  border-radius: 3px;
+
+  background: #03c75a;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+
+  cursor: pointer;
+
+  box-shadow: 0 10px 24px rgba(3, 199, 90, 0.18);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.cable-smartstore-button:hover {
+  transform: translateY(-3px);
+  background: #02b953;
+  box-shadow: 0 15px 30px rgba(3, 199, 90, 0.25);
+}
+
+.cable-smartstore-button:active {
+  transform: translateY(-1px);
+}
+
+.cable-smartstore-arrow {
+  display: inline-block;
+
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+
+  transition: transform 0.25s ease;
+}
+
+.cable-smartstore-button:hover .cable-smartstore-arrow {
+  transform: translateX(5px);
+}
+
+/* =========================================
+   SMARTSTORE TABLET
+========================================= */
+
+@media screen and (max-width: 900px) {
+  .cable-smartstore {
+    padding: 55px 18px;
+  }
+
+  .cable-smartstore-card {
+    padding: 36px 34px;
+    gap: 30px;
+  }
+
+  .cable-smartstore-button {
+    width: 205px;
+  }
+}
+
+/* =========================================
+   SMARTSTORE MOBILE
+========================================= */
+
+@media screen and (max-width: 650px) {
+  .cable-smartstore {
+    padding: 42px 14px;
+  }
+
+  .cable-smartstore-card {
+    flex-direction: column;
+    align-items: flex-start;
+
+    min-height: 0;
+    padding: 30px 25px;
+
+    gap: 25px;
+  }
+
+  .cable-smartstore-label {
+    font-size: 9px;
+    letter-spacing: 0.35em;
+  }
+
+  .cable-smartstore-text h2 {
+    font-size: 26px;
+  }
+
+  .cable-smartstore-text p {
+    margin-top: 10px;
+    font-size: 13px;
+  }
+
+  .cable-smartstore-button {
+    width: 100%;
+    height: 52px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media screen and (max-width: 380px) {
+  .cable-smartstore-card {
+    padding: 27px 20px;
+  }
+
+  .cable-smartstore-text h2 {
+    font-size: 23px;
+  }
+}
+
+.cable-smartstore-card {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+
+  width: 100%;
+  max-width: 1160px;
+  min-height: 170px;
+
+  margin: 0 auto;
+  padding: 42px 48px 42px 52px;
+
+  overflow: hidden;
+
+  border: 1px solid #e4e4df;
+  border-radius: 2px;
+  background: #ffffff;
+
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.04);
+}
+
+/* 초록색 띠를 왼쪽에 배치 */
+.cable-smartstore-card::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: auto;
+
+  width: 5px;
+  height: 100%;
+
+  background: #03c75a;
+}
+
+/* =========================================
+   SMART STORE BANNER
+========================================= */
+
+.cable-smartstore-section {
+  width: 100%;
+  padding: 70px 30px 100px;
+  background: #f7f7f5;
+}
+
+.cable-smartstore-card {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+
+  width: 100%;
+  max-width: 1160px;
+  min-height: 205px;
+
+  margin: 0 auto;
+  padding: 42px 48px 42px 52px;
+
+  overflow: hidden;
+
+  border: 1px solid #e2e2de;
+  background: #ffffff;
+
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.05);
+}
+
+.cable-smartstore-card::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 5px;
+
+  background: #03c75a;
+}
+
+.cable-smartstore-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.cable-smartstore-label {
+  margin: 0 0 12px;
+
+  color: #818181;
+
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 5px;
+}
+
+.cable-smartstore-text h2 {
+  margin: 0;
+
+  color: #111111;
+
+  font-size: clamp(25px, 3vw, 38px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -1px;
+
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+.cable-smartstore-description {
+  margin: 17px 0 0;
+
+  color: #777777;
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.cable-smartstore-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  flex: 0 0 260px;
+
+  height: 55px;
+  padding: 0 24px;
+
+  border: none;
+  border-radius: 3px;
+
+  background: #03c75a;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 12px 28px rgba(3, 199, 90, 0.18);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.cable-smartstore-button:hover {
+  transform: translateY(-2px);
+  background: #02b953;
+  box-shadow: 0 16px 32px rgba(3, 199, 90, 0.25);
+}
+
+/* =========================================
+   SMART STORE OVERLAY
+========================================= */
+
+.cable-store-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+
+  visibility: hidden;
+
+  background: rgba(0, 0, 0, 0.42);
+  opacity: 0;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.cable-store-overlay.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* =========================================
+   SMART STORE SIDEBAR
+========================================= */
+
+.cable-store-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 420px;
+  max-width: 92vw;
+  height: 100vh;
+  height: 100dvh;
+
+  overflow-y: auto;
+
+  background: #ffffff;
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.16);
+
+  transform: translateX(105%);
+
+  transition: transform 0.35s ease;
+}
+
+.cable-store-sidebar.open {
+  transform: translateX(0);
+}
+
+.cable-store-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 115px;
+  padding: 26px 28px;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+.cable-store-sidebar-header p {
+  margin: 0 0 7px;
+
+  color: #888888;
+
+  font-size: 9px;
+  letter-spacing: 4px;
+}
+
+.cable-store-sidebar-header h2 {
+  margin: 0;
+
+  color: #111111;
+
+  font-size: 28px;
+  letter-spacing: 5px;
+}
+
+.cable-store-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+  color: #111111;
+
+  font-size: 34px;
+  font-weight: 200;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.cable-store-sidebar-body {
+  flex: 1;
+  padding: 50px 28px;
+}
+
+.cable-store-sidebar-label {
+  margin: 0 0 15px;
+
+  color: #03c75a;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+.cable-store-sidebar-body h3 {
+  margin: 0;
+
+  color: #111111;
+
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.cable-store-sidebar-description {
+  margin: 22px 0 0;
+
+  color: #6f6f6f;
+
+  font-size: 14px;
+  line-height: 1.9;
+  word-break: keep-all;
+}
+
+.cable-store-move-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 56px;
+
+  margin-top: 38px;
+  padding: 0 22px;
+
+  border: none;
+  border-radius: 3px;
+
+  background: #03c75a;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.cable-store-move-button:hover {
+  transform: translateY(-2px);
+  background: #02b953;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media screen and (max-width: 900px) {
+  .cable-smartstore-section {
+    padding: 55px 18px 80px;
+  }
+
+  .cable-smartstore-card {
+    gap: 35px;
+    padding: 38px 35px 38px 42px;
+  }
+
+  .cable-smartstore-button {
+    flex-basis: 220px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media screen and (max-width: 650px) {
+  .cable-smartstore-section {
+    padding: 42px 14px 70px;
+  }
+
+  .cable-smartstore-card {
+    flex-direction: column;
+    align-items: stretch;
+
+    min-height: 0;
+    padding: 30px 24px 30px 29px;
+
+    gap: 25px;
+  }
+
+  .cable-smartstore-text h2 {
+    font-size: 25px;
+    white-space: normal;
+  }
+
+  .cable-smartstore-button {
+    flex: none;
+    width: 100%;
+    height: 52px;
+  }
+
+  .cable-store-sidebar {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .cable-store-sidebar-body {
+    padding: 42px 24px;
+  }
+}
+
+/* 오른쪽 스마트스토어 사이드바 */
+.store-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(420px, 88vw);
+  height: 100vh;
+  padding: 32px;
+  background: #fff;
+  box-sizing: border-box;
+  z-index: 1001;
+  overflow-y: auto;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+}
+
+/* 사이드바 헤더 */
+.store-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 35px;
+}
+
+.store-header h3 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.store-header button {
+  border: 0;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* 사이드바 본문 */
+.store-body p {
+  margin: 0 0 25px;
+  line-height: 1.7;
+}
+
+.move-store {
+  width: 100%;
+  padding: 16px 20px;
+  border: 0;
+  background: #03c75a;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* 배경 어둡게 */
+.store-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+}
+

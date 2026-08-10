@@ -2,11 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
+import { getProductImageUrl } from "./api/productApi";
 
-const IMG_MAIN1 = process.env.PUBLIC_URL + "/blen-main1.jpg";
-const IMG_MAIN2 = process.env.PUBLIC_URL + "/blen-main2.jpg";
-const IMG_MAIN3 = process.env.PUBLIC_URL + "/blen-main3.jpg";
-const IMG_MAIN4 = process.env.PUBLIC_URL + "/blen-main4.jpg";
+const IMG_PANTS1 = process.env.PUBLIC_URL + "/pants1.jpg";
 
 /*
   서버에서 상품을 못 불러오더라도
@@ -14,28 +12,12 @@ const IMG_MAIN4 = process.env.PUBLIC_URL + "/blen-main4.jpg";
 */
 const fallbackProducts = [
   {
-    id: 1,
-    name: "BLEN Black Front",
+    id: "pants-1",
+    name: "CABLE 레깅스",
     price: 39000,
-    imageUrl: IMG_MAIN1,
-  },
-  {
-    id: 2,
-    name: "BLEN White Logo",
-    price: 49000,
-    imageUrl: IMG_MAIN2,
-  },
-  {
-    id: 3,
-    name: "BLEN Back Mood",
-    price: 42000,
-    imageUrl: IMG_MAIN3,
-  },
-  {
-    id: 4,
-    name: "BLEN Basic",
-    price: 39000,
-    imageUrl: IMG_MAIN4,
+    description: "편안한 착용감과 슬림한 실루엣의 CABLE 레깅스입니다.",
+    imageUrl: IMG_PANTS1,
+    isLocalFallback: true,
   },
 ];
 
@@ -50,7 +32,7 @@ const fallbackProducts = [
   REACT_APP_API_BASE_URL=https://실제주소
 */
 const API_BASE_URL =
-  process.env.REACT_APP_API_BASE_URL || "";
+  "https://port-0-activecable-mrzowfvhf02b6a71.sel3.cloudtype.app";
 
 export default function ProductList() {
   const navigate = useNavigate();
@@ -60,67 +42,74 @@ export default function ProductList() {
   const [apiError, setApiError] = useState(false);
 
   useEffect(() => {
-    if (!API_BASE_URL) {
-      setLoading(false);
-      return;
-    }
+  axios
+    .get(`${API_BASE_URL}/api/products`)
+    .then((response) => {
+      const data = Array.isArray(response.data)
+        ? response.data
+        : response.data?.content;
 
-    axios
-      .get(`${API_BASE_URL}/api/product/list`)
-      .then((response) => {
-        const data = Array.isArray(response.data)
-          ? response.data
-          : response.data?.content;
+      console.log("Cloudtype 상품 데이터:", data);
 
-        if (Array.isArray(data) && data.length > 0) {
-          const normalizedProducts = data.map((item, index) => ({
-            id: item.id ?? item.itemId ?? index + 1,
+      if (Array.isArray(data) && data.length > 0) {
+        const normalizedProducts = data.map((item, index) => ({
+          id: item.id ?? item.itemId ?? index + 1,
 
-            name:
-              item.name ??
-              item.productName ??
-              item.title ??
-              "BLEN Product",
+          name:
+            item.name ??
+            item.productName ??
+            item.title ??
+            "CABLE Product",
 
-            price: Number(
-              item.price ??
-              item.productPrice ??
-              0
-            ),
+          price: Number(
+            item.price ??
+            item.productPrice ??
+            0
+          ),
 
-            imageUrl:
+          imageUrl: (() => {
+            const image =
               item.imageUrl ??
               item.image ??
-              item.img ??
-              fallbackProducts[
+              item.imagePath ??
+              item.img;
+
+            if (!image) {
+              return fallbackProducts[
                 index % fallbackProducts.length
-              ].imageUrl,
-          }));
+              ].imageUrl;
+            }
 
-          setProducts(normalizedProducts);
-        }
-      })
-      .catch((error) => {
-        console.error("상품 목록 조회 오류:", error);
-        setApiError(true);
+            return getProductImageUrl(image);
+          })(),
+        }));
 
-        // 서버 오류가 나도 기본 상품은 그대로 표시
+        setProducts(normalizedProducts);
+        setApiError(false);
+      } else {
         setProducts(fallbackProducts);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
-
-  const handleProductClick = (id) => {
-    navigate(`/product/${id}`);
+      }
+    })
+    .catch((error) => {
+      console.error("상품 목록 조회 오류:", error);
+      setApiError(true);
+      setProducts(fallbackProducts);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+}, []);
+  const handleProductClick = (product) => {
+    navigate(`/product/${product.id}`, {
+      state: product.isLocalFallback ? { product } : undefined,
+    });
   };
 
   return (
-  <section className="blen-product-section">
-    <div className="blen-section-heading">
-      <div className="blen-section-title-group">
-        <p className="blen-section-label">
+  <section className="cable-product-section">
+    <div className="cable-section-heading">
+      <div className="cable-section-title-group">
+        <p className="cable-section-label">
           SELECTED ITEMS
         </p>
 
@@ -129,54 +118,54 @@ export default function ProductList() {
 
       <button
         type="button"
-        className="blen-view-all"
+        className="cable-view-all"
         onClick={() => navigate("/category/BEST")}
       >
         <span>전체보기</span>
-        <span className="blen-view-all-arrow">→</span>
+        <span className="cable-view-all-arrow">→</span>
       </button>
     </div>
 
     {loading && (
-      <p className="blen-product-message">
+      <p className="cable-product-message">
         상품을 불러오는 중입니다.
       </p>
     )}
 
     {apiError && (
-      <p className="blen-product-message">
+      <p className="cable-product-message">
         기본 상품을 표시하고 있습니다.
       </p>
     )}
 
     {!loading && products.length === 0 ? (
-      <p className="blen-product-message">
+      <p className="cable-product-message">
         등록된 상품이 없습니다.
       </p>
     ) : (
-      <div className="blen-product-grid">
+      <div className="cable-product-grid">
         {products.map((product) => (
           <article
             key={product.id}
-            className="blen-product-card"
-            onClick={() => handleProductClick(product.id)}
+            className="cable-product-card"
+            onClick={() => handleProductClick(product)}
           >
-            <div className="blen-product-image-wrap">
+            <div className="cable-product-image-wrap">
               <img
                 src={product.imageUrl}
                 alt={product.name}
-                className="blen-product-image"
+                className="cable-product-image"
                 onError={(event) => {
-                  event.currentTarget.src = IMG_MAIN1;
+                  event.currentTarget.src = IMG_PANTS1;
                 }}
               />
 
-              <div className="blen-product-overlay">
+              <div className="cable-product-overlay">
                 VIEW PRODUCT
               </div>
             </div>
 
-            <div className="blen-product-info">
+            <div className="cable-product-info">
               <h3>{product.name}</h3>
 
               <p>

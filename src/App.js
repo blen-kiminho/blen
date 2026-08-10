@@ -13,6 +13,8 @@ import Layout from "./components/common/Layout";
 import MainApp from "./MainApp";
 import ProductList from "./ProductList";
 import ProductDetail from "./ProductDetail";
+import CategoryPage from "./pages/CategoryPage";
+import CartPage from "./pages/CartPage";
 import FAQPage from "./FAQPage";
 
 /* Q&A 페이지 */
@@ -21,6 +23,7 @@ import QnaWrite from "./components/qna/QnaWrite";
 import QnaDetailPage from "./components/qna/QnaDetailPage";
 import AdminProductForm from "./pages/AdminProductForm";
 import LookbookPage from "./pages/LookbookPage";
+import AdminPage from "./pages/AdminPage";
 
 const router = createHashRouter([
   {
@@ -51,11 +54,20 @@ const router = createHashRouter([
         path: "product/:id",
         element: <ProductDetail />,
       },
-
       /* 카테고리 */
       {
         path: "category/:category",
-        element: <ProductList />,
+        element: <CategoryPage />,
+      },
+      /* 장바구니 */
+      {
+        path: "cart",
+        element: <CartPage />,
+      },
+      /* 관리자 상품 등록*/
+      {
+        path: "admin/product",
+        element: <AdminProductForm />,
       },
 
       /* Q&A 기본 주소 */
@@ -125,8 +137,9 @@ const router = createHashRouter([
       /* 관리자 임시 화면 */
       {
         path: "admin",
-        element: <div>관리자 페이지</div>,
+        element: <AdminPage />,
       },
+
       {
         path: "admin1",
         element: <div>관리자 페이지</div>,
@@ -136,6 +149,11 @@ const router = createHashRouter([
       {
         path: "*",
         element: <Navigate to="/" replace />,
+      },
+      // ★ 반드시 있어야 함
+      {
+        path: "product/:id",
+        element: <ProductDetail />,
       },
     ],
   },
